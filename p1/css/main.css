@@ -13,11 +13,6 @@ header {
     text-align: center;
 }
 
-main {
-    overflow: auto;
-    padding: 0 0.5in;
-}
-
 a {
     text-decoration: none;
 }
@@ -34,7 +29,7 @@ h1 {
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: -6px -12px;
+    margin: -4px -8px;
 }
 
 th {
@@ -43,7 +38,7 @@ th {
 
 th,
 td {
-    padding: 6px 12px;
+    padding: 4px 8px;
     text-align: left;
 }
 

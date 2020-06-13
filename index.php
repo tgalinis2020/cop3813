@@ -1,12 +1,12 @@
 <?php
 
-$projects = [
+$projects = [[
     'title' => 'Home Page',
     'link' => 'p1/index.html',
 ], [
     'title' => 'Web Page',
     'link' => 'p2/index.html',
-];
+]];
 
 ?><!DOCTYPE html>
 <html lang="en-US">

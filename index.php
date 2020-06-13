@@ -29,7 +29,7 @@ $projects = [[
 
         <ul>
             <?php foreach ($projects as $project): ?>
-                <li><a href="<?= __DIR__ . $project['url'] ?>"><?= $project['title'] ?></a></li>
+                <li><a href="<?= $project['url'] ?>"><?= $project['title'] ?></a></li>
             <?php endforeach ?>
         </ul>
     </div>

@@ -2,10 +2,10 @@
 
 $projects = [[
     'title' => 'Home Page',
-    'url' => '/p1/index.html',
+    'url' => 'p1/index.html',
 ], [
     'title' => 'Web Page',
-    'url' => '/p2/index.html',
+    'url' => 'p2/index.html',
 ]];
 
 ?><!DOCTYPE html>

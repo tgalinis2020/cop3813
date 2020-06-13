@@ -2,10 +2,10 @@
 
 $projects = [[
     'title' => 'Home Page',
-    'link' => 'p1/index.html',
+    'url' => '/p1/index.html',
 ], [
     'title' => 'Web Page',
-    'link' => 'p2/index.html',
+    'url' => '/p2/index.html',
 ]];
 
 ?><!DOCTYPE html>
@@ -29,7 +29,7 @@ $projects = [[
 
         <ul>
             <?php foreach ($projects as $project): ?>
-                <li><a href="<?= $project['url'] ?>"><?= $project['title'] ?></a></li>
+                <li><a href="<?= __DIR__ . $project['url'] ?>"><?= $project['title'] ?></a></li>
             <?php endforeach ?>
         </ul>
     </div>

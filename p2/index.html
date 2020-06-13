@@ -1,11 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="w-100 h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thomas Galinis' Home Page - Bootstrap Edition</title>
+    <link rel="stylesheet" type="text/css"
+            href="vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"href="css/styles.css">
+    <script type="text/javascript"
+            src="vendor/jquery-3.5.1-dist/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
+            src="vendor/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-    
+<body id="top" data-spy="scroll" data-target="#topnav" data-offset="0" class="w-100 h-100">
+    <nav id="topnav" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">hi, i'm tom.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav nav-pills ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutme">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Postsecondary Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Technical Skills</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="jumbotron header w-100 h-100 d-flex align-items-center justify-content-center">
+        <img class="header__background" alt="Picture of code" src="assets/background.png">
+
+        <div class="header__foreground container">
+            <div class="avatar-container">
+                <img class="avatar" alt="A very flattering image of Thomas Galinis"
+                    src="assets/avatar-2.png">
+            </div>
+
+            <div class="text-center">
+                <h1>Thomas Galinis</h1>
+                <p class="text-muted">Academic. Nerd. Professional
+                    Procrastinator.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container my-5" id="aboutme">
+            <h1>Hi there! I'm Tom.</h1>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                    <p>So&hellip; I know a thing or two about web
+                        development. It all started back in Deerfield Beach High School
+                        with two Web Design courses. They had us use Dreamweaver and
+                        Fireworks CS3 to make front end user interfaces. We didn't do
+                        much in terms of programming but it did catch my attention. Not
+                        too long after graduating, I started to look into PHP and MySQL
+                        to make a message board! Followed copious tutorials from an
+                        English lad in phpacademy (now
+                        <a href="https://www.youtube.com/user/phpacademy">CodeCourse</a>).
+                        Learned how to connect to backends, manage user accounts, look
+                        for vulnerabilities and store sensitive information securely.
+                        His videos were invaluable.</p>
+
+                    <p class="text--indented">Fast-forward to today, I've been keeping
+                        up with the latest trends and doing a lot of self-studying.
+                        CSS flexbox and grid are game changers! Dabbled a little with
+                        Node.js, Angular2+, React, and many more platforms &amp; libraries.</p>
+                </div>
+
+                <div class="col-xs-12 col-lg-6">
+                    <p>When it comes to IT and the sciences,
+                        YouTube has been a great resource. Here's some of my favorite
+                        channels:</p>
+
+                    <ul>
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/user/TechGuyWeb">
+                                Traversy Media
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/user/derekbanas">
+                                Derek Banas
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/user/schafer5">
+                                Corey Schafer
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/user/Computerphile">
+                                Computerphile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank"  href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw">
+                                3Blue1Brown
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank" href="https://www.youtube.com/user/LinusTechTips">
+                                Linus Tech Tips
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-5" id="education">
+            <h1>Postsecondary Education</h1>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Institution</th>
+                        <th>Period</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Florida Atlantic University</td>
+                        <td>2019&hyphen;Now</td>
+                        <td>
+                            <ul>
+                                <li>Majoring in Computer Science</li>
+                                <li>Boy, tuition is expensive :(</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Broward College</td>
+                        <td>2014&hyphen;2016</td>
+                        <td>
+                            <ul>
+                                <li>Earned an Associates of Arts</li>
+                                <li>Tutored in web development, programming and
+                                    IT at the North Campus Computer Lab</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Atlantic Technical Center</td>
+                        <td>2011&hyphen;2012</td>
+                        <td>
+                            <ul>
+                                <li>Earned a Business Computer Programming
+                                    certificate (basically Oracle SQL)</li>
+                                <li>Wrote programs in Java</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container my-5" id="skills">
+            <h1>Technical Skills</h1>
+
+            <ul>
+                <li><span class="font-weight-bold">Productivity</span> Microsoft Office,
+                    LibreOffice, LaTeX</li>
+                <li><span class="font-weight-bold">Frameworks and Libraries</span>
+                    Angular2+, React, Redux, Slim, Symfony</li>
+                <li><span class="font-weight-bold">Operating Systems</span> GNU/Linux,
+                    Windows, FreeBSD</li>
+                <li><span class="font-weight-bold">Web Development:</span> HTML, CSS,
+                    JavaScript, PHP, SQL</li>
+                <li><span class="font-weight-bold">Version Control:</span>: Git</li>
+                <li><span class="font-weight-bold">Other Languages:</span> C/C++, Python,
+                    Bash, Java</li>
+            </ul>
+
+            <p><em>&iexcl;Hablo espa&ntilde;ol!</em> I can speak and write (more or less)
+                in Spanish.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="text-center text-muted">&copy; 2020 Thomas Galinis</p>
+        </div>
+    </footer>
 </body>
 </html>

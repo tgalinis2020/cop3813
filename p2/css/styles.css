@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+/*
+
+Compensate for fixed navbar using padding
+
+Based on https://stackoverflow.com/questions/11124777/twitter-bootstrap-navbar-fixed-top-overlapping-site#answer-13051843
+
+*/
+body {
+    padding-top: 55px;
+    scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+}
+
+.text--indented {
+    text-indent: 0.5in;
+}
+
+.avatar-container {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #6f6f6f;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.avatar-container > img {
+    width: 100%;
+}
+
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #000000;
+}
+
+header h1 {
+    color: #ffffff;
+}
+
+.header__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.25;
+    width: auto;
+    height: 100%;
+    z-index: 0;
+}
+
+.header__foreground {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-link {
+    transition: 250ms ease all;
+    color: rgba(0, 0, 0, 0.5);
+}

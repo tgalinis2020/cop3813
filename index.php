@@ -1,6 +1,6 @@
 <?php
 
-$projects = [[
+const PROJECTS = [[
     'title' => 'Home Page',
     'url' => 'p1/index.html',
 ], [
@@ -28,8 +28,8 @@ $projects = [[
         <hr>
 
         <ul>
-            <?php foreach ($projects as $project): ?>
-                <li><a href="<?= $project['url'] ?>"><?= $project['title'] ?></a></li>
+            <?php foreach (PROJECTS as $p): ?>
+                <li><a href="<?= $p['url'] ?>"><?= $p['title'] ?></a></li>
             <?php endforeach ?>
         </ul>
     </div>

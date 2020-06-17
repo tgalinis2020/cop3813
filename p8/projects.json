@@ -4,32 +4,28 @@
             "id": 1,
             "title": "Home Page",
             "description": "A simple web page using basic HTML and CSS. Nothing too fancy, but it's easy on the eyes. Contains some basic information about me, such as my favorite YouTube channels and technical skills.",
-            "url": "p1/index.html",
-            "img": "assets/p1.png"
+            "url": "p1/index.html"
         },
 
         {
             "id": 2,
             "title": "Web Page",
             "description": "For all intents and purposes, it's exactly like my first project with the exception of using Bootstrap to modify the style and layout. Features some fancy features, such as Scrollspy integration with the navigation bar.",
-            "url": "p2/index.html",
-            "img": "assets/p2.png"
+            "url": "p2/index.html"
         },
 
         {
             "id": 3,
             "title": "Javascript",
             "description": "Calculate various statistical measures using the power of Javascript. Features on-the-fly input validation and some light use of Regular Expressions.",
-            "url": "p3/index.html",
-            "img": "assets/p3.png"
+            "url": "p3/index.html"
         },
 
         {
             "id": 8,
             "title": "Landing Page",
             "description": "You are here! This page hosts all my projects. It reads \"projects.json\" and displays its content using a Bootstrap card deck.",
-            "url": "p8/index.php",
-            "img": "assets/p8.png"
+            "url": "p8/index.php"
         }
     ]
 }

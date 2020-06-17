@@ -23,17 +23,20 @@
             <hr>
 
             <form id="stats-form">
-                <div class="form-group row">
-                    <div class="col-10">
-                        <label for="numberList" class="sr-only">Enter some mumbers</label>
-                        <input class="form-control" id="numberList"
-                            placeholder="Enter a comma-separated list of numbers. Ex: 1, 2, 3">
-                        <div class="invalid-feedback" id="feedback"></div>
-                    </div>
+                <div class="form-group">
+                    <label for="numberList">Enter a comma-separated list of numbers</label>
 
-                    <div class="col-2">
-                        <input disabled class="btn btn-primary w-100"
-                            type="submit" id="calculate" value="Calculate">
+                    <div class="row">
+                        <div class="col-md-10 mb-4">
+                            <input class="form-control" id="numberList"
+                                placeholder="Ex: 1, 2, 3">
+                            <div class="invalid-feedback" id="feedback"></div>
+                        </div>
+
+                        <div class="col-md-2 mb-4">
+                            <input disabled class="btn btn-primary w-100"
+                                type="submit" id="calculate" value="Calculate">
+                        </div>
                     </div>
                 </div>
             </form>
@@ -48,52 +51,52 @@
                 <tbody>
                     <tr>
                         <th>Arithmetic Mean</th>
-                        <td><span id="arithmeticMean">N/A</span></td>
+                        <td><span id="arithmeticMean">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Harmonic Mean</th>
-                        <td><span id="harmonicMean">N/A</span></td>
+                        <td><span id="harmonicMean">0</span></td>
                     </tr>
 
                     <tr>
-                        <th>Gemotric Mean</th>
-                        <td><span id="geometricMean">N/A</span></td>
+                        <th>Geometric Mean</th>
+                        <td><span id="geometricMean">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Median</th>
-                        <td><span id="median">N/A</span></td>
+                        <td><span id="median">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Mode</th>
-                        <td><span id="mode">N/A</span></td>
+                        <td><span id="mode">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Minimum</th>
-                        <td><span id="minimum">N/A</span></td>
+                        <td><span id="minimum">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Maximum</th>
-                        <td><span id="maximum">N/A</span></td>
+                        <td><span id="maximum">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Range</th>
-                        <td><span id="range">N/A</span></td>
+                        <td><span id="range">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Variance</th>
-                        <td><span id="variance">N/A</span></td>
+                        <td><span id="variance">0</span></td>
                     </tr>
 
                     <tr>
                         <th>Standard Deviation</th>
-                        <td><span id="stddev">N/A</span></td>
+                        <td><span id="stddev">0</span></td>
                     </tr>
                 </tbody>
             </table>

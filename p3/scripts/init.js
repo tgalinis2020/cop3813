@@ -9,7 +9,7 @@
 (function () {
     'use strict'
 
-    // Save some keystrokes, going be typing this a lot
+    // Save some keystrokes, going be typing this a lot...
     const getById = id => document.getElementById(id)
 
     // Output elements
@@ -29,23 +29,16 @@
     const input = getById('numberList')
     const submit = getById('calculate')
 
-    // @TODO RegEx matches even when commas are not in correct location
-
     // RegEx for matching a comma-separated list of numbers, including
-    // numbers with decimal places. White space is allowed.
-    const listOfNumbers = /^\s*(\d*\.?\d*)\s*(\,\s*(\d*\.?\d*)\s*)*$/
+    // numbers with decimal places. Excess whitespace is allowed.
+    const listOfNumbers = /^\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*(\,\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*)*$/
 
-    // Form validity status. Intially invalid because input textbox is empty.
-    let isValid = false
+    // Form validity status. Assume true until proven otherwise
+    let isValid = true
 
     // Validate input as the user types it
     input.addEventListener('keyup', function (event) {
-        if (input.value === '') {
-            input.classList.remove('is-invalid')
-            submit.disabled = true
-            isValid = false
-
-        } else if (listOfNumbers.test(input.value)) {
+        if (listOfNumbers.test(input.value)) {
             if (!isValid) {
                 input.classList.remove('is-invalid')
                 submit.disabled = false
@@ -71,7 +64,7 @@
         // Split the input string by the commas and convert each
         // stringified number to a float
         const nums = input.value.split(',').map(n => parseFloat(n))
-        const samples = analyzeSamples(nums)
+        const samples = analyzeSamples(nums) // see scripts/stats.js for details
         const outputs = [
             [arithmeticMean, samples.mean.arithmetic],
             [harmonicMean, samples.mean.harmonic],
@@ -85,7 +78,9 @@
             [range, samples.range],
         ]
 
-        // Show all measures up to two decimal places
+        // Show all measures up to two decimal places.
+        // Use array destructuring to pick out the element and value from
+        // the parameter.
         outputs.forEach(([el, val]) => el.innerHTML = Math.round(val * 100) / 100)
     })
 })()

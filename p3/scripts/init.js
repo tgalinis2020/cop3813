@@ -29,6 +29,8 @@
     const input = getById('numberList')
     const submit = getById('calculate')
 
+    // @TODO RegEx matches even when commas are not in correct location
+
     // RegEx for matching a comma-separated list of numbers, including
     // numbers with decimal places. White space is allowed.
     const listOfNumbers = /^\s*(\d*\.?\d*)\s*(\,\s*(\d*\.?\d*)\s*)*$/

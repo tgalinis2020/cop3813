@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    position: relative;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.header__background {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    opacity: 0.2;
+}
+
+.header__foreground {
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    z-index: 1;
+    color: #eeeeee;
+}
+
+.header__foreground h1 {
+    color: #eeeeee;
+}
+
+.header__foreground h5 {
+    color: #aaaaaa;
+}
+
+.card .btn {
+    background-color: #4ea374;
+    color: #ffffff;
+}
+
+.card .btn:hover {
+    background-color: #3b8352;
+}

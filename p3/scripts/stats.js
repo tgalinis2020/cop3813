@@ -31,7 +31,7 @@ const Stats = {
         // the two elements are contained in mid - 1 and mid, but
         // Array.slice(x, y) returns the elements from index x up to but
         // not including index y.
-        return data.legnth % 2
+        return data.length % 2
             ? data[mid]
             : Stats.mean.arithmetic(data.slice(mid-1, mid+1))
     },

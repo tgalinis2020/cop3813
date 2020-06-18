@@ -25,16 +25,12 @@
     const range = getById('range')
     const feedback = getById('feedback')
 
-    // Input elements
+    // Input element
     const input = getById('numberList')
-    const submit = getById('calculate')
 
     // RegEx for matching a comma-separated list of numbers, including
     // numbers with decimal places. Excess whitespace is allowed.
     const listOfNumbers = /^\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*(\,\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*)*$/
-
-    // Form validity status. Assume true until proven otherwise
-    let isValid = true
     
     // Since the form is validated as the user types their input, the form will
     // be disabled until the input is valid.
@@ -66,6 +62,7 @@
             [range, samples.range],
         ]
 
+        // At this point user input should be valid
         input.classList.remove('is-invalid')
         feedback.innerHTML = null 
 

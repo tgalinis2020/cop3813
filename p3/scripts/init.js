@@ -76,6 +76,6 @@
 
         // Mode is an outlier: if there are no repeated numbers, the mode
         // is not applicable.
-        mode.innerHTML = samples.mode || 'Not Applicable'
+        mode.innerHTML = samples.mode ?? 'Not Applicable'
     })
 })()

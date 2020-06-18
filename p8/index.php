@@ -19,7 +19,7 @@ $content = json_decode(file_get_contents(__DIR__ . '/projects.json'), true);
     <link rel="stylesheet" type="text/css"
             href="vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
-            href="styles/main.css">
+            href="styles/p8.css">
 </head>
 
 <body>

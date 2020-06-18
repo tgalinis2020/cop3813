@@ -6,6 +6,7 @@ header {
     position: relative;
     overflow: hidden;
     background-color: #000000;
+    box-shadow: inset 0 0 100px #444444;
 }
 
 .header__background {

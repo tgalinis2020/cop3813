@@ -23,8 +23,8 @@
 
         {
             "id": 8,
-            "title": "Landing Page",
-            "description": "You are here! This page hosts all my projects. It reads projects.json in the p8 directory and displays its contents using Bootstrap cards.",
+            "title": "Portal",
+            "description": "You are here! This page hosts all my projects. It uses PHP to read projects.json in the p8 directory and displays its contents using Bootstrap cards.",
             "url": "p8/index.php"
         }
     ]

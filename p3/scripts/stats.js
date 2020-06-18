@@ -11,15 +11,13 @@
  */
 const Stats = {
     mean: {
-        arithmetic: function (data) {
-            // Reduce the array into the sum of its elements, then divide by
-            // the length of the array
-            return data.reduce((acc, cur) => acc + cur, 0) / data.length
-        },
-
-        harmonic: function (data) {
-            return data.length / data.reduce((acc, curr) => (1 / curr) + acc, 0)
-        },
+        // Reduce the array into the sum of its elements, then divide by
+        // the length of the array.
+        arithmetic: data => data.reduce((acc, cur) => acc + cur, 0) / data.length,
+        
+        // Same as above, but divide length of array by the sum of the
+        // elements' reciprocals.
+        harmonic: data => data.length / data.reduce((acc, curr) => acc + (1 / curr), 0),
     },
 
     // Note: data must be sorted beforehand to get a correct value
@@ -27,16 +25,15 @@ const Stats = {
         // Middle index of array, rounded down
         const mid = Math.floor(data.length / 2)
 
-        if (data.length % 2) {
-            // Array has an odd number of elements. Median will be contained directly
-            // in the middle of the sorted array
-            return data[mid]
-        } else {
-            // Array has an even number of elements. Median will be the mean of
-            // the two elements in the middle of the sorted array
-            return Stats.mean.arithmetic(data.slice(mid-1, mid+1))
-        }
-
+        // If the array has an odd number of elements, the median will be
+        // contained directly in the middle of the sorted array. Otherwise,
+        // it will be the mean of the two elements in the middle. Note that
+        // the two elements are contained in mid - 1 and mid, but
+        // Array.slice(x, y) returns the elements from index x up to but
+        // not including index y.
+        return data.legnth % 2
+            ? data[mid]
+            : Stats.mean.arithmetic(data.slice(mid-1, mid+1))
     },
 
     mode: function (data) {
@@ -85,42 +82,4 @@ const Stats = {
         // Initialize the accumilator with the last element of the array
         return samples.reduce((acc, curr) => curr < acc ? curr : acc, last)
     },
-}
-
-// Convenience utility for analyzing a list of numbers
-function analyzeSamples(samples) {
-    let variance
-    let stddev
-
-    samples.sort((a, b) => a - b) // sort in ascending order
-
-    const arithmetic = Stats.mean.arithmetic(samples)
-
-    const harmonic = Stats.mean.harmonic(samples)
-
-    const geometric = (arithmetic * harmonic) ** 0.5
-
-    const max = Stats.max(samples)
-
-    const min = Stats.min(samples)
-
-    if (samples.length > 1) {
-        variance = samples.map(n => (n - arithmetic) ** 2)
-            .reduce((acc, curr) => acc + curr, 0) / (samples.length - 1)
-
-        stddev = variance ** 0.5
-    } else {
-        variance = stddev = 0
-    }
-
-    return {
-        mean: { arithmetic, harmonic, geometric },
-        median: Stats.median(samples),
-        mode: Stats.mode(samples),
-        variance,
-        stddev,
-        max,
-        min,
-        range: max - min,
-    }
 }

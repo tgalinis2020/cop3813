@@ -18,9 +18,16 @@
 <body>
     <main>
         <div class="container my-5">
-            <h1>Statistical Analysis</h1>
+            <h1 class="mb-4">Statistical Analysis</h1>
 
-            <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../">Landing Page</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Statistical Analysis
+                    </li>
+                </ol>
+            </nav>
 
             <form id="stats-form">
                 <div class="form-group">
@@ -34,7 +41,7 @@
                         </div>
 
                         <div class="col-md-2 mb-4">
-                            <input disabled class="btn btn-primary w-100"
+                            <input class="btn btn-primary w-100"
                                 type="submit" id="calculate" value="Calculate">
                         </div>
                     </div>

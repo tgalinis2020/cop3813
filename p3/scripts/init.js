@@ -35,31 +35,19 @@
 
     // Form validity status. Assume true until proven otherwise
     let isValid = true
-
-    // Validate input as the user types it
-    input.addEventListener('keyup', function (event) {
-        if (listOfNumbers.test(input.value)) {
-            if (!isValid) {
-                input.classList.remove('is-invalid')
-                submit.disabled = false
-                feedback.innerHTML = null 
-                isValid = true
-            }
-
-        } else {
-            if (isValid) {
-                input.classList.add('is-invalid')
-                submit.disabled = true
-                feedback.innerHTML = "Please enter a valid comma-separated list of numbers."
-                isValid = false
-            }
-        }
-    })
     
     // Since the form is validated as the user types their input, the form will
     // be disabled until the input is valid.
     getById('stats-form').addEventListener('submit', function (event) {
         event.preventDefault()
+
+        // If input isn't valid when submitting the form, show feedback message
+        // and don't perform anything else.
+        if (!listOfNumbers.test(input.value)) {
+            input.classList.add('is-invalid')
+            feedback.innerHTML = "Please enter a valid comma-separated list of numbers."
+            return
+        }
 
         // Split the input string by the commas and convert each
         // stringified number to a float
@@ -78,9 +66,16 @@
             [range, samples.range],
         ]
 
+        input.classList.remove('is-invalid')
+        feedback.innerHTML = null 
+
         // Show all measures up to two decimal places.
         // Use array destructuring to pick out the element and value from
         // the parameter.
         outputs.forEach(([el, val]) => el.innerHTML = Math.round(val * 100) / 100)
+
+        // Mode is an outlier: if there are no repeated numbers, the mode
+        // is not applicable.
+        mode.innerHTML = samples.mode || 'Not Applicable'
     })
 })()

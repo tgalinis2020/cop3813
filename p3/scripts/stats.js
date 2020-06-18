@@ -18,7 +18,7 @@ const Stats = {
         },
 
         harmonic: function (data) {
-            return data.length / data.reduce((acc, curr) => 1 / curr + acc, 0)
+            return data.length / data.reduce((acc, curr) => (1 / curr) + acc, 0)
         },
     },
 
@@ -42,7 +42,8 @@ const Stats = {
     mode: function (data) {
         const counts = {} // map of all occurrences of numbers in the list
         let occurrences = 0 // number of occurrences of the mode
-        let selected = null // the mode itself
+        let selected = null // the mode itself, assume there isn't one
+        let uniqueOccurrences = 0
 
         // Transform data into set of numbers with their occurences
         data.forEach(n => {
@@ -50,13 +51,17 @@ const Stats = {
                 counts[n]++
             } else {
                 counts[n] = 1
+                uniqueOccurrences++
             }
         })
 
-        for (const n in counts) {
-            if (counts[n] > occurrences) {
-                selected = n
-                occurrences = counts[n]
+        // If there is no mode, don't even bother looking for it
+        if (uniqueOccurrences < data.length) {
+            for (const n in counts) {
+                if (counts[n] > occurrences) {
+                    selected = n
+                    occurrences = counts[n]
+                }
             }
         }
 

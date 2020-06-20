@@ -21,7 +21,7 @@
 
     // RegEx for matching a comma-separated list of numbers, including
     // numbers with decimal places. Excess whitespace is allowed.
-    const listOfNumbers = /^\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*(\,\s*((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*)*$/
+    const listOfNumbers = /^\s*\-?((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*(\,\s*\-?((\d*\.\d+)|(\d+\.\d*)|(\d+))\s*)*$/
     
     form.addEventListener('submit', function (event) {
         event.preventDefault()
@@ -40,20 +40,24 @@
 
         samples.sort((a, b) => a - b) // sort in ascending order
 
-        let variance = 0
-        let stddev = 0
+        let geometric = Stats.mean.geometric(samples)
         const arithmetic = Stats.mean.arithmetic(samples)
         const harmonic = Stats.mean.harmonic(samples)
-        const geometric = (arithmetic * harmonic) ** 0.5
+        const variance = Stats.variance(samples, arithmetic)
         const max = Stats.max(samples)
         const min = Stats.min(samples)
 
-        if (samples.length > 1) {
-            variance = samples.map(n => (n - arithmetic) ** 2)
-                .reduce((acc, curr) => acc + curr, 0) / (samples.length - 1)
+        // If it isnt't possible to calculate the geometic mean using its
+        // formula because the product of all the samples is negative, try
+        // using the alternative approximation using the arithmetic and
+        // harmonic means...
+        if (isNaN(geometric)) {
+            let product = arithmetic * harmonic
 
-            stddev = variance ** 0.5
-        } 
+            // ...and if that doesn't work, then the geometric mean isn't
+            // very useful in this case
+            geometric = product > 0 ? product ** 0.5 : null
+        }
 
         // Note: this array must be parallel to outputEls
         const outputVals = [
@@ -62,9 +66,9 @@
             Stats.mode(samples),
             min,
             max,
-            max - min,
+            max - min, // range is the difference between max and min
             variance,
-            stddev
+            variance ** 0.5 // stddev is the square root of variance
         ]
 
         // Remove invalid class and remove feedback now that input is valid

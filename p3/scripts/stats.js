@@ -18,6 +18,8 @@ const Stats = {
         // Same as above, but divide length of array by the sum of the
         // elements' reciprocals.
         harmonic: data => data.length / data.reduce((acc, curr) => acc + (1 / curr), 0),
+
+        geometric: data => data.reduce((acc, curr) => acc * curr, 1) ** (1 / data.length),
     },
 
     // Note: data must be sorted beforehand to get a correct value
@@ -81,5 +83,13 @@ const Stats = {
         // Reduce the array into its smallest value
         // Initialize the accumilator with the last element of the array
         return samples.reduce((acc, curr) => curr < acc ? curr : acc, last)
+    },
+
+    // If there's no more than 2 samples in the set, there is no variance
+    variance: function (data, mean) {
+        return data.length > 1
+            ? data.map(n => (n - mean) ** 2)
+                .reduce((acc, curr) => acc + curr, 0) / (data.length - 1)
+            : 0
     },
 }

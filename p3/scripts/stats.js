@@ -85,7 +85,7 @@ const Stats = {
         return samples.reduce((acc, curr) => curr < acc ? curr : acc, last)
     },
 
-    // If there's no more than 2 samples in the set, there is no variance
+    // If there's no more than 1 sample in the set, there is no variance
     variance: function (data, mean) {
         return data.length > 1
             ? data.map(n => (n - mean) ** 2)

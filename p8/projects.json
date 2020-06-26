@@ -22,6 +22,13 @@
         },
 
         {
+            "id": 4,
+            "title": "jQuery",
+            "description": "Play tic-tac-toe on your web browser, brought to you by the convenience of jQuery.",
+            "url": "p4/index.html"
+        },
+
+        {
             "id": 8,
             "title": "Portal",
             "description": "You are here! This page hosts all my projects. It uses PHP to read projects.json in the p8 directory and displays its contents using Bootstrap cards.",

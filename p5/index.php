@@ -1,7 +1,7 @@
 <?php
 
 // Some useful constants
-const B_SHOW_GENERATED_NUMBER = true;
+const B_SHOW_GENERATED_NUMBER = false;
 const MAX_ATTEMPTS = 5;
 const MIN = 1;
 const MAX = 10;
@@ -13,9 +13,7 @@ $feedback = null;
 session_start();
 
 // Reset the game if the session has not been set or is reset explicitly.
-// Instead of checking the REQUEST_METHOD directly, check if the submit or reset
-// buttons are set.
-if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
+if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_GET['reset'])) {
     $_SESSION['number'] = rand(MIN, MAX);
     $_SESSION['attempts'] = 0;
     $_SESSION['gameover'] = false;
@@ -74,7 +72,7 @@ if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
 <body>
     <main>
         <div class="container my-5">
-            <h1 class="mb-4">Guess the number!</h1>
+            <h1 class="mb-4">Guess a Number!</h1>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../">Portal</a></li>
                 <li class="breadcrumb-item active">PHP</li>

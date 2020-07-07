@@ -30,9 +30,9 @@
 
         {
             "id": 5,
-            "title": "PHP Number Guessing Game",
+            "title": "PHP Guessing Game",
             "description": "Test your luck with this game written in PHP. It's nice enough to tell you if you guessed too high or low!",
-            "url": "p5/index.html"
+            "url": "p5/index.php"
         },
 
         {

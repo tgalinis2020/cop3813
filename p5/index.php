@@ -32,8 +32,9 @@ if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
 
         if ($_SESSION['attempts'] === MAX_ATTEMPTS) {
             $_SESSION['gameover'] = true;
+            $feedback['title'] = 'You are out of attempts!';
             $feedback['message'] = sprintf(
-                'You are out of attempts! I was thinking of %d. Better luck next time!',
+                'I was thinking of %d. Better luck next time!',
                 $_SESSION['number']
             );
         } else {

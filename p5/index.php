@@ -79,7 +79,7 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_G
             </ul>
 
             <?php if (!empty($feedback)): ?>
-                <div class="alert alert-<?= $feedback['style'] ?> alert-dismissible fade show" role="alert">
+                <div class="alert alert-<?= $feedback['style'] ?>" role="alert">
                     <strong><?= $feedback['title'] ?></strong> <?= $feedback['message'] ?>
 
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -89,7 +89,7 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_G
             <?php endif ?>
 
             <?php if ($_SESSION['gameover']): ?>
-                <a class="btn btn-primary" href="?reset">Play Again</a>
+                <a class="btn btn-primary" href="index.php">Play Again</a>
             <?php else: ?>
                 <form method="POST" action="index.php">
                     <p>

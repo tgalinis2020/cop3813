@@ -69,8 +69,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <main>
+        <div class="container my-5">
+            <h1 class="mb-4">Guess the number</h1>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../">Portal</a></li>
+                <li class="breadcrumb-item active">PHP Number guessing game</li>
+            </ul>
 
-        <div class="container">
             <?php if (!empty($feedback)): ?>
                 <div class="alert alert-<?= $feedback['style'] ?> alert-dismissible fade show" role="alert">
                     <strong><?= $feedback['title'] ?></strong> <?= $feedback['message'] ?>

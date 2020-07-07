@@ -89,30 +89,30 @@ if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
                 </div>
             <?php endif ?>
 
-            <form method="POST" action="index.php">
-                <p>
-                    I'm thinking of a number between <?= MIN ?> and <?= MAX ?>.
-                    You have <?= MAX_ATTEMPTS - $_SESSION['attempts'] ?> attempts.
-                </p>
+            <?php if ($_SESSION['gameover']): ?>
+                <a class="btn btn-primary" href="?reset">Play Again</a>
+            <?php else: ?>
+                <form method="POST" action="index.php">
+                    <p>
+                        I'm thinking of a number between <?= MIN ?> and <?= MAX ?>.
+                        You have <?= MAX_ATTEMPTS - $_SESSION['attempts'] ?> attempts.
+                    </p>
 
-                <?php if (B_SHOW_GENERATED_NUMBER): ?>
-                    <p><strong>Spoilers:</strong> it's <?= $_SESSION['number'] ?>.</p>
-                <?php endif ?>
+                    <?php if (B_SHOW_GENERATED_NUMBER): ?>
+                        <p><strong>Spoilers:</strong> it's <?= $_SESSION['number'] ?>.</p>
+                    <?php endif ?>
 
-                <p>
-                    <label for="guess">Your guess?</label>
-                    <input class="form-control" type="number"
-                            id="guess" name="guess"
-                            min="<?= MIN ?>" max="<?= MAX ?>" autofocus>
-                </p>
+                    <p>
+                        <label for="guess">Your guess?</label>
+                        <input class="form-control" type="number"
+                                id="guess" name="guess"
+                                min="<?= MIN ?>" max="<?= MAX ?>" autofocus>
+                    </p>
 
-                <?php if ($_SESSION['gameover']): ?>
-                    <a class="btn btn-primary" href="?reset">Play Again</a>
-                <?php else: ?>
                     <input type="submit" name="submit" value="Guess" class="btn btn-primary">
                     <a class="btn btn-danger" href="?reset">Reset</a>
-                <?php endif ?>
-            </form>
+                </form>
+            <?php endif ?>
         </div>
     </main>
 

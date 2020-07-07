@@ -1,5 +1,5 @@
 /**
- * Based on given code
+ * Based on the following code snippet by Ray Toal: https://jsfiddle.net/rtoal/ThPEH/
  */
 $(function () {
     'use strict'
@@ -7,7 +7,7 @@ $(function () {
     const squares = []
     const SIZE = 3
     const EMPTY = '&nbsp;'
-    const winConditions = [7, 56, 448, 73, 146, 292, 273, 84]
+    const wins = [7, 56, 448, 73, 146, 292, 273, 84]
     const score = { 'X': 0, 'O': 0 }
     const resetBtn = $('#game-reset')
     const statusEl = $('#game-status')
@@ -20,7 +20,7 @@ $(function () {
         maybeBtn: $('#game-modal__maybe'),
     }
     let moves
-    let turn = 'X'
+    let turn
     let gameover
 
     function newGame() {
@@ -34,24 +34,29 @@ $(function () {
     }
 
     function win(score) {
-        for (const condition of winConditions) {
+        for (const condition of wins) {
             if ((condition & score) === condition) {
                 return true
             }
         }
+
         return false
     }
 
     function set() {
+        // Don't do anything if cell is not empty or game is over.
         if ($(this).html() !== EMPTY || gameover) {
             return
         }
 
         $(this).html(`<span class="player-${turn.toLowerCase()}">${turn}</span>`)
         moves += 1
+
+        // Add the corresponding score to the current player's total
         score[turn] |= $(this)[0].indicator
 
         if (win(score[turn])) {
+            // Update both the modal header and status span element
             [modal.header, statusEl].forEach(el => el.html(`${turn} wins!`))
             modal.el.modal('show')
             gameover = true
@@ -91,20 +96,21 @@ $(function () {
         newGame()
     }
 
-    modal.maybeBtn.click(function () {
-        if (Math.random() <= 0.6) {
-            newGame()
-        }
-
-        modal.el.modal('hide')
-    })
-
+    // Register an onclick event handler for the "play again" modal button.
     modal.playAgainBtn.click(function () {
         newGame()
         modal.el.modal('hide')
     })
 
+    // An amusing option that may or may not start a new game.
+    modal.maybeBtn.click(function () {
+        Math.random() <= 0.6 && newGame()
+        modal.el.modal('hide')
+    })
+
+    // Give an option to reset the game outside of the modal.
     resetBtn.click(newGame)
 
+    // Start the game.
     init()
 })

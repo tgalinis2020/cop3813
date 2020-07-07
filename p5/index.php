@@ -81,10 +81,6 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_G
             <?php if (!empty($feedback)): ?>
                 <div class="alert alert-<?= $feedback['style'] ?>" role="alert">
                     <strong><?= $feedback['title'] ?></strong> <?= $feedback['message'] ?>
-
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
             <?php endif ?>
 

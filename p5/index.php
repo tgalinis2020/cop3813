@@ -12,16 +12,17 @@ $feedback = null;
 // Use PHP sessions to keep track of the random number and number of attempts
 session_start();
 
-// Reset the game if the session has not been set or is reset explicitly
+// Reset the game if the session has not been set or is reset explicitly.
+// Instead of checking the REQUEST_METHOD directly, check if the submit or reset
+// buttons are set.
 if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
     $_SESSION['number'] = rand(MIN, MAX);
     $_SESSION['attempts'] = 0;
     $_SESSION['gameover'] = false;
-}
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $_SESSION['user']['attempts'] += 1;
-    $randNum = $_SESSION['user']['number'];
+} elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $_SESSION['attempts'] += 1;
+    $randNum = $_SESSION['number'];
     $guess = (int) $_POST["guess"];
     $tooLow = $guess < $randNum;
     $tooHigh = $guess > $randNum;
@@ -64,16 +65,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" type="text/css"
             href="../vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
     <script type="text/javascript"
+            src="../vendor/jquery-3.5.1-dist/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
             src="../vendor/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <main>
         <div class="container my-5">
-            <h1 class="mb-4">Guess the number</h1>
+            <h1 class="mb-4">Guess the number!</h1>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../">Portal</a></li>
-                <li class="breadcrumb-item active">PHP Number guessing game</li>
+                <li class="breadcrumb-item active">PHP Guessing Game</li>
             </ul>
 
             <?php if (!empty($feedback)): ?>
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             <?php endif ?>
 
-            <form method="POST" action="">
+            <form method="POST" action="index.php">
                 <p>
                     I'm thinking of a number between <?= MIN ?> and <?= MAX ?>.
                     You have <?= MAX_ATTEMPTS - $_SESSION['attempts'] ?> attempts.
@@ -99,13 +102,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <p>
                     <label for="guess">Your guess?</label>
                     <input class="form-control" type="number"
-                            id="guess" name="guess" min="1" max="10" autofocus>
+                            id="guess" name="guess"
+                            min="<?= MIN ?>" max="<?= MAX ?>" autofocus>
                 </p>
 
                 <?php if ($_SESSION['gameover']): ?>
                     <a class="btn btn-primary" href="?reset">Play Again</a>
                 <?php else: ?>
-                    <input type="submit" value="Guess" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Guess" class="btn btn-primary">
                     <a class="btn btn-danger" href="?reset">Reset</a>
                 <?php endif ?>
             </form>

@@ -4,42 +4,42 @@
             "id": 1,
             "title": "Home Page",
             "description": "A simple web page using basic HTML and CSS. Nothing too fancy, but it's easy on the eyes. Contains some basic information about me, such as my favorite YouTube channels and technical skills.",
-            "url": "p1/index.html"
+            "url": "/p1/index.html"
         },
 
         {
             "id": 2,
             "title": "Web Page",
             "description": "A rehash of the first project, this time using Bootstrap to modify the style and layout. Features some fancy features, such as Scrollspy integration with the navigation bar.",
-            "url": "p2/index.html"
+            "url": "/p2/index.html"
         },
 
         {
             "id": 3,
             "title": "JavaScript",
             "description": "Calculate various statistical measures using the power of Javascript. Features input validation and light use of Regular Expressions.",
-            "url": "p3/index.html"
+            "url": "/p3/index.html"
         },
 
         {
             "id": 4,
             "title": "JavaScript &amp; jQuery",
             "description": "Play tic-tac-toe on your web browser, brought to you by the convenience of jQuery.",
-            "url": "p4/index.html"
+            "url": "/p4/index.html"
         },
 
         {
             "id": 5,
-            "title": "PHP Guessing Game",
-            "description": "Test your luck with this game written in PHP. It's nice enough to tell you if you guessed too high or low!",
-            "url": "p5/index.php"
+            "title": "PHP",
+            "description": "Test your luck with this number guessing game written in PHP. It's nice enough to tell you if your guess is too high or low!",
+            "url": "/p5/index.php"
         },
 
         {
             "id": 8,
             "title": "Portal",
             "description": "You are here! This page hosts all my projects. It uses PHP to read projects.json in the p8 directory and displays its contents using Bootstrap cards.",
-            "url": "p8/index.php"
+            "url": "/p8/index.php"
         }
     ]
 }

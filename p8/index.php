@@ -1,5 +1,7 @@
 <?php
 
+const BASEDIR = '/~tgalinis2020';
+
 // Load content from external JSON file
 $content = json_decode(file_get_contents(__DIR__ . '/projects.json'), true);
 
@@ -9,15 +11,15 @@ $content = json_decode(file_get_contents(__DIR__ . '/projects.json'), true);
     <meta charset="utf-8">
     <title>Thomas Galinis' Projects</title>
     <link rel="stylesheet" type="text/css"
-            href="/~tgalinis2020/vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+            href="<?= BASEDIR . '/vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css' ?>">
     <link rel="stylesheet" type="text/css"
-            href="/~tgalinis2020/p8/styles/main.css">
+            href="<?= BASEDIR . '/p8/styles/main.css' ?>">
 </head>
 
 <body>
     <header>
         <img class="header__background"
-                src="/~tgalinis2020/p8/assets/jquery-minified.png"
+                src="<?= BASEDIR . '/p8/assets/jquery-minified.png' ?>"
                 alt="Picture of code">
 
         <div class="header__foreground container">
@@ -39,7 +41,7 @@ $content = json_decode(file_get_contents(__DIR__ . '/projects.json'), true);
                             </div>
 
                             <div class="card-footer">
-                                <a href="<?= $p['url'] ?>"
+                                <a href="<?= BASEDIR . $p['url'] ?>"
                                         class="btn w-100">View Page</a>
                             </div>
                         </div>

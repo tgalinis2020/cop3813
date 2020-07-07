@@ -76,7 +76,7 @@ if (!isset($_SESSION['number']) || isset($_GET['reset'])) {
             <h1 class="mb-4">Guess the number!</h1>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../">Portal</a></li>
-                <li class="breadcrumb-item active">PHP Guessing Game</li>
+                <li class="breadcrumb-item active">PHP</li>
             </ul>
 
             <?php if (!empty($feedback)): ?>

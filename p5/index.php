@@ -9,50 +9,59 @@ const MAX = 10;
 // Show the user a message depending on their input
 $feedback = null;
 
+// Form validity status
+$valid = true;
+
 // Use PHP sessions to keep track of the random number and number of attempts
 session_start();
 
-// Reset the game if the session has not been set or is reset explicitly.
+// Reset the game if the session has not been set, if the game is over or is reset explicitly.
 if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_GET['reset'])) {
     $_SESSION['number'] = rand(MIN, MAX);
     $_SESSION['attempts'] = 0;
     $_SESSION['gameover'] = false;
 
 } elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $_SESSION['attempts'] += 1;
-    $randNum = $_SESSION['number'];
     $guess = (int) $_POST["guess"];
-    $tooLow = $guess < $randNum;
-    $tooHigh = $guess > $randNum;
-        
-    if ($tooLow || $tooHigh) {
-        $feedback = ['style' => 'danger', 'title' => '', 'message' => ''];
 
-        if ($_SESSION['attempts'] === MAX_ATTEMPTS) {
-            $_SESSION['gameover'] = true;
-            $feedback['title'] = 'You are out of attempts!';
-            $feedback['message'] = sprintf(
-                'I was thinking of %d. Better luck next time!',
-                $_SESSION['number']
-            );
-        } else {
-            if ($tooLow) {
-                $feedback['title'] = 'Too low!';
-                $feedback['message'] = 'Try a larger number.';
-            } else {
-                $feedback['title'] = 'Too high!';
-                $feedback['message'] = 'Try a smaller number.';
-            }
-            
-        }
+    if (empty($_POST['guess']) || $guess < MIN || $guess > MAX) {
+        $valid = false;
     } else {
-        $_SESSION['gameover'] = true;
+        $valid = true;
+        $_SESSION['attempts'] += 1;
+        $randNum = $_SESSION['number'];
+        $tooLow = $guess < $randNum;
+        $tooHigh = $guess > $randNum;
+            
+        if ($tooLow || $tooHigh) {
+            $feedback = ['style' => 'danger', 'title' => '', 'message' => ''];
 
-        $feedback = [
-            'style' => 'success',
-            'title' => 'Well done!',
-            'message' => 'You got it!',
-        ];
+            if ($_SESSION['attempts'] === MAX_ATTEMPTS) {
+                $_SESSION['gameover'] = true;
+                $feedback['title'] = 'You are out of attempts!';
+                $feedback['message'] = sprintf(
+                    'I was thinking of %d. Better luck next time!',
+                    $_SESSION['number']
+                );
+            } else {
+                if ($tooLow) {
+                    $feedback['title'] = 'Too low!';
+                    $feedback['message'] = 'Try a larger number.';
+                } else {
+                    $feedback['title'] = 'Too high!';
+                    $feedback['message'] = 'Try a smaller number.';
+                }
+                
+            }
+        } else {
+            $_SESSION['gameover'] = true;
+
+            $feedback = [
+                'style' => 'success',
+                'title' => 'Well done!',
+                'message' => 'You got it!',
+            ];
+        }
     }
 }
 
@@ -99,9 +108,15 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_G
 
                     <p>
                         <label for="guess">Your guess?</label>
-                        <input class="form-control" type="number"
+                        <input class="form-control<?= $valid ? '' : ' is-invalid' ?>" type="number"
                                 id="guess" name="guess"
                                 min="<?= MIN ?>" max="<?= MAX ?>" autofocus>
+                                
+                        <?php if (!$valid): ?>
+                            <div class="invalid-feedback">
+                                Please enter a number between <?= MIN ?> and <?= MAX ?>!
+                            </div>
+                        <?php endif ?>
                     </p>
 
                     <input type="submit" name="submit" value="Guess" class="btn btn-primary">

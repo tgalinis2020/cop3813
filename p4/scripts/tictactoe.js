@@ -1,5 +1,7 @@
 /**
  * Based on the following code snippet by Ray Toal: https://jsfiddle.net/rtoal/ThPEH/
+ * 
+ * @author Thomas Galinis <tgalinis2020@fau.edu>
  */
 $(function () {
     'use strict'

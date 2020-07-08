@@ -108,10 +108,10 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] === true || isset($_G
 
                     <p>
                         <label for="guess">Your guess?</label>
-                        <input class="form-control<?= $valid ? '' : ' is-invalid' ?>" type="number"
-                                id="guess" name="guess"
+                        <input class="form-control<?= $valid ? '' : ' is-invalid' ?>"
+                                type="number" id="guess" name="guess"
                                 min="<?= MIN ?>" max="<?= MAX ?>" autofocus>
-                                
+
                         <?php if (!$valid): ?>
                             <div class="invalid-feedback">
                                 Please enter a number between <?= MIN ?> and <?= MAX ?>!

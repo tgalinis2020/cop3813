@@ -2,7 +2,7 @@
 
 // Don't allow users to run this script directly
 if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
-    header('Location: index.php');
+    header('Location: index.php'); // Redirect to main page
     die;
 }
 
@@ -66,7 +66,7 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] || isset($_GET['reset
                     'I was thinking of %d. Better luck next time!',
                     $_SESSION['number']
                 );
-                
+
             } else {
                 if ($lowOrHigh === -1) {
                     $feedback['title'] = 'Too low!';

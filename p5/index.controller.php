@@ -1,5 +1,11 @@
 <?php
 
+// Don't allow users to run this script directly
+if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
+    header('Location: index.php');
+    die;
+}
+
 // Some useful constants
 const B_SHOW_GENERATED_NUMBER = false;
 const MAX_ATTEMPTS = 5;

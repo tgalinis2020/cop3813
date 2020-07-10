@@ -40,18 +40,17 @@
                         <p><strong>Spoilers:</strong> it's <?= $_SESSION['number'] ?>.</p>
                     <?php endif ?>
 
-                    <p>
+                    <div class="my-2">
                         <label for="guess">Your guess?</label>
                         <input class="<?= implode(' ', $inputClasses) ?>"
-                                type="number" id="guess" name="guess"
-                                min="<?= MIN ?>" max="<?= MAX ?>" required autofocus>
+                                type="text" id="guess" name="guess" autofocus>
 
                         <?php if (!$valid): ?>
                             <div class="invalid-feedback">
                                 Please enter a number between <?= MIN ?> and <?= MAX ?>!
                             </div>
                         <?php endif ?>
-                    </p>
+                    </div>
 
                     <input type="submit" value="Guess" class="btn btn-primary">
                     <a class="btn btn-danger" href="?reset">Reset</a>

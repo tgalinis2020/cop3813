@@ -44,12 +44,9 @@
                         <label for="guess">Your guess?</label>
                         <input class="<?= implode(' ', $inputClasses) ?>"
                                 type="text" id="guess" name="guess" autofocus>
-
-                        <?php if (!$valid): ?>
-                            <div class="invalid-feedback">
-                                Please enter a number between <?= MIN ?> and <?= MAX ?>!
-                            </div>
-                        <?php endif ?>
+                        <div class="invalid-feedback">
+                            Please enter a number between <?= MIN ?> and <?= MAX ?>!
+                        </div>
                     </div>
 
                     <input type="submit" value="Guess" class="btn btn-primary">

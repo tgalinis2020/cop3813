@@ -15,9 +15,6 @@ const MAX = 10;
 // Show the user a message depending on their input
 $feedback = null;
 
-// Form validity status
-$valid = true;
-
 $inputClasses = ['form-control'];
 
 // Use PHP sessions to keep track of the random number and number of attempts
@@ -33,11 +30,9 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] || isset($_GET['reset
     $guess = (int) $_POST["guess"];
 
     if (empty($_POST['guess']) || $guess < MIN || $guess > MAX) {
-        $valid = false;
         $inputClasses[] = 'is-invalid';
 
     } else {
-        $valid = true;
         $_SESSION['attempts'] += 1;
         $randNum = $_SESSION['number'];
 

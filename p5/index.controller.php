@@ -35,14 +35,9 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] || isset($_GET['reset
     } else {
         $_SESSION['attempts'] += 1;
         $randNum = $_SESSION['number'];
-
-        // Spaceship operator returns...
-        //   -1 if guess < randNum
-        //    0 if guess === randNum
-        //    1 if guess > randNum
-        $lowOrHigh = $guess <=> $randNum;
+        $delta = $guess - $randNum;
             
-        if ($lowOrHigh === 0) {
+        if ($delta === 0) {
             $_SESSION['gameover'] = true;
 
             $feedback = [
@@ -63,12 +58,16 @@ if (!isset($_SESSION['gameover']) || $_SESSION['gameover'] || isset($_GET['reset
                 );
 
             } else {
-                if ($lowOrHigh === -1) {
+                if ($delta < 0) {
                     $feedback['title'] = 'Too low!';
                     $feedback['message'] = 'Try a larger number.';
                 } else {
                     $feedback['title'] = 'Too high!';
                     $feedback['message'] = 'Try a smaller number.';
+                }
+
+                if ($delta >= -2 && $delta <= 2) {
+                    $feedback['message'] .= ' You are very close!';
                 }
             }
         }

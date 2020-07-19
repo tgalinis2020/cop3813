@@ -15,6 +15,7 @@ const MAX = 10;
 // Show the user a message depending on their input
 $feedback = null;
 
+// Classes that apply to input field
 $inputClasses = ['form-control'];
 
 // Use PHP sessions to keep track of the random number and number of attempts

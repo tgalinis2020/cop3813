@@ -87,7 +87,7 @@ $measure_type_units = [
     ],
 
     'temperature' => [
-        'C' => 'Celcius',
+        'C' => 'Celsius',
         'F' => 'Fahrenheit',
         'K' => 'Kelvin',
     ]
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // No need to do any conversion if the units are equal
     if ($from_unit !== $to_unit) {
-        // Note: Celcius is the base unit of measurement for temperature
+        // Note: Celsius is the base unit of measurement for temperature
         if ($measure_type === 'temperature') {
             switch ($from_unit) {
                 case 'F':

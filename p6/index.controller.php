@@ -130,7 +130,7 @@ $measure_tables = [
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $from_unit = $_POST['from_unit'];
     $to_unit = $_POST['to_unit'];
-    $value = (float) sanitize($_POST['from_value']);
+    $value = (float) sanitize($_POST['value']);
     $result = $value; // initially assume from_unit === to_unit
 
     // No need to do any conversion if the units are equal

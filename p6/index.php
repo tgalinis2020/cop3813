@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-2" for="to_unit">Convert To</label>
+                    <label class="col-form-label col-sm-2" for="to_unit">Convert</label>
                     <div class="col-sm-10">
                         <div class="row">
                             <div class="col-sm-3">

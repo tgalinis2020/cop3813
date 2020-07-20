@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $result = ($result-32) * 5/9;
                         break;
                     case 'K':
-                        $result = $result - 273.15;
+                        $result -= 273.15;
                         break;
                 }
 
@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $result = ($result*9)/5 + 32;
                         break;
                     case 'K':
-                        $result = $result + 273.15;
+                        $result += 273.15;
                         break;
                 }
             } else {

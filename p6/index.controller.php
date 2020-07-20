@@ -8,8 +8,8 @@ if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
 
 require __DIR__ . '/../common/sanitize.php';
 
-$from_unit = null;
-$to_unit = null;
+$from_unit = null; // units of given value
+$to_unit = null; // units of result
 $value = null; // value given by user, initially empty
 $result = null; // result to display, initially empty
 
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $result = ($value-32) * 5/9;
                     break;
                 case 'K':
-                    $result = $value + 273.15;
+                    $result = $value - 273.15;
                     break;
             }
 
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $result = ($result*9)/5 + 32;
                     break;
                 case 'K':
-                    $result = $result - 273.15;
+                    $result = $result + 273.15;
                     break;
             }
         } else {

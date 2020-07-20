@@ -26,42 +26,43 @@
             <form action="" method="POST">
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Type</label>
-                    <div class="btn-group" role="group" aria-label="Measurement types">
-                        <?php foreach ($measure_types as $label => $value): ?>
-                            <a  href="?type=<?= $value ?>"
-                                class="btn btn-primary"
-                                <?= is_selected($value) ? 'disabled' : '' ?>
-                            ><?= $label ?></a>
-                        <?php endforeach ?>
+                    <div class="col-sm-10">
+                        <div class="btn-group" role="group" aria-label="Measurement types">
+                            <?php foreach ($measure_types as $label => $value): ?>
+                                <a  href="?type=<?= $value ?>"
+                                    class="btn btn-primary"
+                                    <?= is_selected($value) ? 'disabled' : '' ?>
+                                ><?= $label ?></a>
+                            <?php endforeach ?>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2" for="value">Value</label>
-                    <input class="form-control col-sm-10" type="text" name="value" id="value">
-                    <select class="form-control col-sm-3 offset-sm-1" name="from_unit" id="from_unit">
-                        <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                            <option value="<?= $unit ?>"><?= $label ?></option>
-                        <?php endforeach ?>
-                    </select>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="value" id="value">
+                    </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2" for="to_unit">Convert To</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="from_unit" id="from_unit" size="20">
-                            <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                <option value="<?= $unit ?>"><?= $label ?></option>
-                            <?php endforeach ?>
-                        </select>
+                        <div class="row">
+                            <select class="form-control col-sm-3" name="from_unit" id="from_unit">
+                                <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                    <option value="<?= $unit ?>"><?= $label ?></option>
+                                <?php endforeach ?>
+                            </select>
 
-                        <span>To</span>
+                            <span class="offset-sm-1 col-sm-1">To</span>
 
-                        <select class="form-control" name="to_unit" id="to_unit" size="20">
-                            <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                <option value="<?= $unit ?>"><?= $label ?></option>
-                            <?php endforeach ?>
-                        </select>
+                            <select class="form-control offset-sm-1 col-sm-3" name="to_unit" id="to_unit">
+                                <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                    <option value="<?= $unit ?>"><?= $label ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
 

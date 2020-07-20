@@ -133,10 +133,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($measure_type === 'temperature') {
                 switch ($from_unit) {
                     case 'F':
-                        $result = ($value-32) * 5/9;
+                        $result = ($result-32) * 5/9;
                         break;
                     case 'K':
-                        $result = $value - 273.15;
+                        $result = $result - 273.15;
                         break;
                 }
 

@@ -23,7 +23,7 @@
                 ?></div>
             <?php endif ?>
 
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+            <form action="" method="POST">
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Type</label>
                     <div class="btn-group" role="group" aria-label="Measurement types">
@@ -38,8 +38,8 @@
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Value</label>
-                    <input class="form-control col-sm-7" type="text">
-                    <select class="form-control col-sm-3" name="from_unit">
+                    <input class="form-control col-sm-6" type="text">
+                    <select class="form-control col-sm-3 offset-sm-1" name="from_unit">
                         <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                             <option value="<?= $unit ?>"><?= $label ?></option>
                         <?php endforeach ?>
@@ -53,6 +53,12 @@
                             <option value="<?= $unit ?>"><?= $label ?></option>
                         <?php endforeach ?>
                     </select>
+                </div>
+
+                <div class="form-group row">
+                    <div class="offset-sm-2">
+                        <input class="btn-primary" type="submit" value="Convert">
+                    </div>
                 </div>
             </form>
         </div>

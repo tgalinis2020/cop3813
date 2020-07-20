@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-2">Value</label>
-                    <input class="form-control col-sm-6" type="text">
-                    <select class="form-control col-sm-3 offset-sm-1" name="from_unit">
+                    <label class="col-form-label col-sm-2" for="value">Value</label>
+                    <input class="form-control col-sm-10" type="text" name="value" id="value">
+                    <select class="form-control col-sm-3 offset-sm-1" name="from_unit" id="from_unit">
                         <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                             <option value="<?= $unit ?>"><?= $label ?></option>
                         <?php endforeach ?>
@@ -47,17 +47,27 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-2">Convert To</label>
-                    <select class="form-control col-sm-3" name="from_unit">
-                        <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                            <option value="<?= $unit ?>"><?= $label ?></option>
-                        <?php endforeach ?>
-                    </select>
+                    <label class="col-form-label col-sm-2" for="to_unit">Convert To</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="from_unit" id="from_unit" size="20">
+                            <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                <option value="<?= $unit ?>"><?= $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+
+                        <span>To</span>
+
+                        <select class="form-control" name="to_unit" id="to_unit" size="20">
+                            <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                <option value="<?= $unit ?>"><?= $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="offset-sm-2">
-                        <input class="btn-primary" type="submit" value="Convert">
+                        <input class="btn btn-primary" type="submit" value="Convert">
                     </div>
                 </div>
             </form>

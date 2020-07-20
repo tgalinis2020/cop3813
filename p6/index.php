@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unit Converter | Thomas Galinis</title>
+    <link rel="stylesheet" type="text/css"
+            href="../vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
 </head>
 <body>
     <main>
@@ -39,7 +41,7 @@
                 <label class="col-form-label col-sm-2">Value</label>
                 <input class="form-control col-sm-7" type="text">
                 <select class="form-control col-sm-3" name="from_unit">
-                    <?php foreach ($measure_type_units[$unit_type] as $unit => $label): ?>
+                    <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                         <option value="<?= $unit ?>"><?= $label ?></option>
                     <?php endforeach ?>
                 </select>
@@ -48,7 +50,7 @@
             <div class="form-group row">
                 <label class="col-form-label col-sm-2">Convert To</label>
                 <select class="form-control col-sm-3 offset-sm-7" name="from_unit">
-                    <?php foreach ($measure_type_units[$unit_type] as $unit => $label): ?>
+                    <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                         <option value="<?= $unit ?>"><?= $label ?></option>
                     <?php endforeach ?>
                 </select>

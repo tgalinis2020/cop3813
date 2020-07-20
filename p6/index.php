@@ -49,19 +49,23 @@
                     <label class="col-form-label col-sm-2" for="to_unit">Convert To</label>
                     <div class="col-sm-10">
                         <div class="row">
-                            <select class="form-control col-sm-3" name="from_unit" id="from_unit">
-                                <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                    <option value="<?= $unit ?>"><?= $label ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="from_unit" id="from_unit">
+                                    <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                        <option value="<?= $unit ?>"><?= $label ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
 
-                            <span class="offset-sm-1 col-sm-1">To</span>
+                            <div class="offset-sm-1 col-sm-1">To</div>
 
-                            <select class="form-control offset-sm-1 col-sm-3" name="to_unit" id="to_unit">
-                                <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                    <option value="<?= $unit ?>"><?= $label ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <div class="col-sm-3">
+                                <select class="form-control offset-sm-1 col-sm-3" name="to_unit" id="to_unit">
+                                    <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
+                                        <option value="<?= $unit ?>"><?= $label ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

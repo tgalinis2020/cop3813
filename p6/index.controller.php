@@ -15,7 +15,7 @@ $result = null; // result to display, initially empty
 
 // Available conversion options
 $measure_types = [
-    'Mass' => 'mass',
+    'Mass &amp; Weight' => 'mass',
     'Volume' => 'volume',
     'Distance' => 'distance',
     'Temperature' => 'temperature'

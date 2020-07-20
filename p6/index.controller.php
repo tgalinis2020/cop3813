@@ -8,23 +8,6 @@ if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
 
 require __DIR__ . '/../common/sanitize.php';
 
-function to_celcius($f) {
-    return ($f-32) * 5/9;
-}
-
-function to_farenheit($c) {
-    return ($c*9)/5 + 32;
-}
-
-// Helper utility to determine whether or not a measure type is selected
-function is_selected($type) {
-    if (isset($_GET['type'])) {
-        return $type === $_GET['type'];
-    } else {
-        return $type === 'mass';
-    }
-}
-
 $from_unit = null;
 $to_unit = null;
 $value = null; // value given by user, initially empty
@@ -158,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $measures = $measure_tables[$measure_type];
 
             // Multiply the given value by the ratio of the given and desired
-            // types to calculate the result 
+            // types to calculate the final result 
             $result *= $measures[$to_unit] / $measures[$from_unit];
         }
     }

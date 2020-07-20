@@ -18,9 +18,15 @@
             </ul>
 
             <?php if (!empty($result)): ?>
-                <div class="alert alert-info" role="alert"><?=
-                    sprintf('%.2f %s = %.2f %s', $value, $from_unit, $result, $to_unit)
-                ?></div>
+                <div class="alert alert-info alert-dismissable fade show" role="alert">
+                    <p>
+                        <?= sprintf('%.2f %s = %.2f %s', $value, $from_unit, $result, $to_unit) ?>
+                    </p>
+                    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             <?php endif ?>
 
             <form action="" method="POST">
@@ -30,8 +36,7 @@
                         <div class="btn-group" role="group" aria-label="Measurement types">
                             <?php foreach ($measure_types as $label => $value): ?>
                                 <a  href="?type=<?= $value ?>"
-                                    class="btn btn-primary"
-                                    <?= is_selected($value) ? 'disabled' : '' ?>
+                                    class="btn btn-<?= (isset($_GET['type']) ? $value === $_GET['type'] : $value === 'mass')? 'primary' : 'secondary' ?>"
                                 ><?= $label ?></a>
                             <?php endforeach ?>
                         </div>

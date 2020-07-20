@@ -46,7 +46,11 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2" for="value">Value</label>
                     <div class="col-sm-10">
-                        <input class="<?= implode(' ', $valueClasses) ?>" type="text" name="value" id="value">
+                        <input class="<?= implode(' ', $valueClasses) ?>"
+                            type="text"
+                            name="value"
+                            id="value"
+                            value="<?= $_POST['value'] ?? '' ?>">
                         <div class="invalid-feedback"><?= $feedback ?></div>
                     </div>
                 </div>
@@ -58,7 +62,9 @@
                             <div class="col-sm-3">
                                 <select class="form-control" name="from_unit" id="from_unit">
                                     <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                        <option value="<?= $unit ?>"><?= $label ?></option>
+                                        <option value="<?= $unit ?>"
+                                            <?= isset($_POST['from_unit']) && $_POST['from_unit'] === $unit  ? 'selected' : '' ?>
+                                        ><?= $label ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -68,7 +74,9 @@
                             <div class="offset-sm-1 col-sm-3">
                                 <select class="form-control" name="to_unit" id="to_unit">
                                     <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
-                                        <option value="<?= $unit ?>"><?= $label ?></option>
+                                        <option value="<?= $unit ?>"
+                                            <?= isset($_POST['to_unit']) && $_POST['to_unit'] === $unit  ? 'selected' : '' ?>
+                                        ><?= $label ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>

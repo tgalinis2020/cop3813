@@ -7,6 +7,8 @@
     <title>Unit Converter | Thomas Galinis</title>
     <link rel="stylesheet" type="text/css"
             href="../vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="../vendor/jquery-3.5.1-dist/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../vendor/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
     <main>
@@ -19,9 +21,7 @@
 
             <?php if (!empty($result)): ?>
                 <div class="alert alert-info alert-dismissable fade show" role="alert">
-                    <p>
-                        <?= sprintf('%.2f %s = %.2f %s', $value, $from_unit, $result, $to_unit) ?>
-                    </p>
+                    <?= sprintf('%.2f %s = %.2f %s', $value, $from_unit, $result, $to_unit) ?>
                     
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

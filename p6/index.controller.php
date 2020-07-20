@@ -157,12 +157,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $measures = $measure_tables[$unit_type];
 
-            print_r($measures);
-            die;
-
             // Multiply the given value by the ratio of the given and desired
             // types to calculate the result 
             $result *= $measures[$to_unit] / $measures[$from_unit];
+
+            header('Content-type: text/plain');
+            print_r($measures);
+            echo PHP_EOL;
+            echo $measures[$from_unit] . PHP_EOL;
+            echo $measures[$to_unit] . PHP_EOL;
+            echo 
+            exit;
         }
     }
 }

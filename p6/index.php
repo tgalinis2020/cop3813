@@ -46,7 +46,8 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2" for="value">Value</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" name="value" id="value">
+                        <input class="<?= implode(' ', $valueClasses) ?>" type="text" name="value" id="value">
+                        <div class="invalid-feedback"><?= $feedback ?></div>
                     </div>
                 </div>
 

@@ -12,6 +12,8 @@ $from_unit = null; // units of given value
 $to_unit = null; // units of result
 $value = null; // value given by user, initially empty
 $result = null; // result to display, initially empty
+$valueClasses = ['form-control'];
+$feedback = null;
 
 // Available conversion options
 $measure_types = [
@@ -38,6 +40,7 @@ if (!isset($base_units[$measure_type])) {
     $measure_type = 'mass';
 }
 
+// Measures to show in <select> elements
 $measure_type_units = [
     'mass' => [
         'g' => 'Grams',
@@ -76,8 +79,7 @@ $measure_type_units = [
     ]
 ];
 
-// Note: since temperatures don't map 1-to-1, they are not present
-//       in this table.
+// Since temperatures don't map 1-to-1, they are not present in this table
 $measure_tables = [
     'mass' => [
         'g' => 1, // grams are the base unit for mass
@@ -113,36 +115,46 @@ $measure_tables = [
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $from_unit = $_POST['from_unit'];
     $to_unit = $_POST['to_unit'];
-    $value = (float) sanitize($_POST['value']);
-    $result = $value; // initially assume from_unit === to_unit
+    $value = sanitize(trim($_POST['value']));
 
-    // No need to do any conversion if the units are equal
-    if ($from_unit !== $to_unit) {
-        // Note: Celsius is the base unit of measurement for temperature
-        if ($measure_type === 'temperature') {
-            switch ($from_unit) {
-                case 'F':
-                    $result = ($value-32) * 5/9;
-                    break;
-                case 'K':
-                    $result = $value - 273.15;
-                    break;
+    // Some simple input validation
+    if (empty($value)) {
+        $valueClasses[] = 'is-invalid';
+        $feedback = 'Input cannot be empty.';
+    } elseif (!is_numeric($value)) {
+        $valueClasses[] = 'is-invalid';
+        $feedback = 'Please enter a numeric value.';
+    } else {
+        $result = (float) $value; // initially assume from_unit === to_unit
+
+        // No need to do any conversion if the units are equal
+        if ($from_unit !== $to_unit) {
+            // Note: Celsius is the base unit of measurement for temperature
+            if ($measure_type === 'temperature') {
+                switch ($from_unit) {
+                    case 'F':
+                        $result = ($value-32) * 5/9;
+                        break;
+                    case 'K':
+                        $result = $value - 273.15;
+                        break;
+                }
+
+                switch ($to_unit) {
+                    case 'F':
+                        $result = ($result*9)/5 + 32;
+                        break;
+                    case 'K':
+                        $result = $result + 273.15;
+                        break;
+                }
+            } else {
+                $measures = $measure_tables[$measure_type];
+
+                // Multiply the given value by the ratio of the given and desired
+                // types to calculate the final result 
+                $result *= $measures[$to_unit] / $measures[$from_unit];
             }
-
-            switch ($to_unit) {
-                case 'F':
-                    $result = ($result*9)/5 + 32;
-                    break;
-                case 'K':
-                    $result = $result + 273.15;
-                    break;
-            }
-        } else {
-            $measures = $measure_tables[$measure_type];
-
-            // Multiply the given value by the ratio of the given and desired
-            // types to calculate the final result 
-            $result *= $measures[$to_unit] / $measures[$from_unit];
         }
     }
 }

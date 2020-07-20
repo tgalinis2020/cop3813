@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-2 col-sm-10">
                         <input class="btn btn-primary" type="submit" value="Convert">
                     </div>
                 </div>

@@ -59,8 +59,8 @@
 
                             <div class="offset-sm-1 col-sm-1">To</div>
 
-                            <div class="col-sm-3">
-                                <select class="form-control offset-sm-1 col-sm-3" name="to_unit" id="to_unit">
+                            <div class="offset-sm-1 col-sm-3">
+                                <select class="form-control" name="to_unit" id="to_unit">
                                     <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                                         <option value="<?= $unit ?>"><?= $label ?></option>
                                     <?php endforeach ?>

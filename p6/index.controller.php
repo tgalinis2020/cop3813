@@ -12,8 +12,8 @@ $from_unit = null; // units of given value
 $to_unit = null; // units of result
 $value = null; // value given by user, initially empty
 $result = null; // result to display, initially empty
-$valueClasses = ['form-control'];
-$feedback = null;
+$valueClasses = ['form-control']; // classes to apply to the input corresponding to the entered value
+$feedback = null; // A hint to let the user know what went wrong
 
 // Available conversion options
 $measure_types = [
@@ -54,7 +54,7 @@ $measure_type_units = [
     'volume' => [
         'L' => 'Liters',
         'mL' => 'Milliliters',
-        'fl oz' => 'Fluid Ounce',
+        'fl oz' => 'Fluid Ounces',
         'c' => 'Cups',
         'pt' => 'Pints',
         'qt' => 'Quarts',
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $valueClasses[] = 'is-invalid';
         $feedback = 'Please enter a numeric value.';
     } else {
-        $result = (float) $value; // initially assume from_unit === to_unit
+        $result = (float) $value;
 
         // No need to do any conversion if the units are equal
         if ($from_unit !== $to_unit) {

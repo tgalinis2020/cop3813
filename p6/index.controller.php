@@ -160,14 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Multiply the given value by the ratio of the given and desired
             // types to calculate the result 
             $result *= $measures[$to_unit] / $measures[$from_unit];
-
-            echo '----- DEBUG INFO -----' . PHP_EOL;
-            print_r($measures);
-            echo PHP_EOL;
-            echo $measures[$from_unit] . PHP_EOL;
-            echo $measures[$to_unit] . PHP_EOL;
-            echo 
-            exit;
         }
     }
 }

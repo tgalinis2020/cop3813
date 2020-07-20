@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // types to calculate the result 
             $result *= $measures[$to_unit] / $measures[$from_unit];
 
-            header('Content-type: text/plain');
+            echo '----- DEBUG INFO -----' . PHP_EOL;
             print_r($measures);
             echo PHP_EOL;
             echo $measures[$from_unit] . PHP_EOL;

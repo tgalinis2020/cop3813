@@ -151,8 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $measures = $measure_tables[$measure_type];
 
-                // Multiply the given value by the ratio of the given and desired
-                // types to calculate the final result 
+                // Multiply the given value by the ratio of the desired and
+                // diven types to calculate the final result 
                 $result *= $measures[$to_unit] / $measures[$from_unit];
             }
         }

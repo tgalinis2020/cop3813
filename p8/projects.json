@@ -36,6 +36,13 @@
         },
 
         {
+            "id": 6,
+            "title": "PHP Unit Converter",
+            "description": "Convert mass, volume, distance, and temperature values using this tool written in PHP.",
+            "url": "/p6/index.php"
+        },
+
+        {
             "id": 8,
             "title": "Portal",
             "description": "You are here! This page hosts all my projects. It uses PHP to read projects.json in the p8 directory and displays its contents using Bootstrap cards.",

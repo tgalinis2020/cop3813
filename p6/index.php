@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter | Thomas Galinis</title>
-    <link rel="stylesheet" type="text/css"
-            href="../vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css">
     <script type="text/javascript" src="../vendor/jquery-3.5.1-dist/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
 </head>
@@ -16,7 +15,7 @@
             <h1 class="mb-4">PHP Unit Converter</h1>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../">Portal</a></li>
-                <li class="breadcrumb-item active">PHP Unit Converter</li>
+                <li class="breadcrumb-item active">Unit Converter</li>
             </ul>
 
             <?php if (!empty($result)): ?>
@@ -35,7 +34,7 @@
                     <div class="col-sm-10">
                         <div class="btn-group" role="group" aria-label="Measurement types">
                             <?php foreach ($measure_types as $label => $value): ?>
-                                <a  href="?type=<?= $value ?>"
+                                <a href="?type=<?= $value ?>"
                                     class="btn btn-<?= $measure_type === $value ? 'primary' : 'secondary' ?>"
                                 ><?= $label ?></a>
                             <?php endforeach ?>

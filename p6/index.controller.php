@@ -15,7 +15,7 @@ $result = null; // result to display, initially empty
 $valueClasses = ['form-control']; // classes to apply to the input corresponding to the entered value
 $feedback = null; // A hint to let the user know what went wrong
 
-// Available conversion options
+// Available conversion options, shown in button group
 $measure_types = [
     'Mass &amp; Weight' => 'mass',
     'Volume' => 'volume',
@@ -23,24 +23,15 @@ $measure_types = [
     'Temperature' => 'temperature'
 ];
 
-// Base types for conversions
-// All values given by user are converted to one of these types
-$base_units = [
-    'mass' => 'g',
-    'volume' => 'L',
-    'distance' => 'm',
-    'temperature' => 'C',
-];
-
-// The selected unit type, default is mass
+// The selected measure type, default is mass
 $measure_type = sanitize($_GET['type'] ?? 'mass');
 
-// Undefined unit types default to mass
-if (!isset($base_units[$measure_type])) {
+// Undefined measure types default to mass
+if (!in_array($measure_type, ['mass', 'volume', 'distance', 'temperature'])) {
     $measure_type = 'mass';
 }
 
-// Measures to show in <select> elements
+// Measure units to show in <select> elements
 $measure_type_units = [
     'mass' => [
         'g' => 'Grams',
@@ -55,6 +46,8 @@ $measure_type_units = [
         'L' => 'Liters',
         'mL' => 'Milliliters',
         'fl oz' => 'Fluid Ounces',
+        'tbsp' => 'Tablespoons',
+        'tsp' => 'Teaspoons',
         'c' => 'Cups',
         'pt' => 'Pints',
         'qt' => 'Quarts',
@@ -94,6 +87,8 @@ $measure_tables = [
         'L' => 1, // liters are the base unit for volume
         'mL' => 1000,
         'fl oz' => 33.814,
+        'tbsp' => 67.628,
+        'tsp' => 202.884,
         'c' => 4.22675,
         'qt' => 1.05669,
         'pt' => 2.11338,

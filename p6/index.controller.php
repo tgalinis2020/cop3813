@@ -9,7 +9,7 @@ if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
 require __DIR__ . '/../common/sanitize.php';
 
 $from_unit = null; // units of given value
-$to_unit = null; // units of result
+$to_unit = null; // desired units for result
 $value = null; // value given by user, initially empty
 $result = null; // result to display, initially empty
 $valueClasses = ['form-control']; // classes to apply to the input corresponding to the entered value

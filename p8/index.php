@@ -1,6 +1,6 @@
 <?php
 
-const BASEDIR = '/~tgalinis2020';
+require __DIR__ . '/common/constants.php';
 
 // Load content from external JSON file
 $content = json_decode(file_get_contents(__DIR__ . '/projects.json'), true);

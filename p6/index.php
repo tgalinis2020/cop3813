@@ -68,7 +68,7 @@
                                 </select>
                             </div>
 
-                            <div class="offset-sm-1 col-sm-1">To</div>
+                            <div class="offset-sm-1 col-sm-1">to</div>
 
                             <div class="offset-sm-1 col-sm-3">
                                 <select class="form-control" name="to_unit" id="to_unit">

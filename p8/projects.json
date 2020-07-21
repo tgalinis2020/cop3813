@@ -37,7 +37,7 @@
 
         {
             "id": 6,
-            "title": "PHP Unit Converter",
+            "title": "Unit Converter",
             "description": "Convert mass, volume, distance, and temperature values using this tool written in PHP.",
             "url": "/p6/index.php"
         },

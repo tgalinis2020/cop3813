@@ -1,3 +1,3 @@
 <?php
 
-define('BASEDIR', dirname(__DIR__));
+define('BASEDIR', '/~tgalinis2020');

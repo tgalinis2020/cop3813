@@ -63,7 +63,7 @@
                                 <select class="form-control" name="from_unit" id="from_unit">
                                     <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                                         <option value="<?= $unit ?>"
-                                            <?= isset($_POST['from_unit']) && $_POST['from_unit'] === $unit  ? 'selected' : '' ?>
+                                            <?= isset($_POST['from_unit']) && $_POST['from_unit'] === $unit ? 'selected' : '' ?>
                                         ><?= $label ?></option>
                                     <?php endforeach ?>
                                 </select>
@@ -75,7 +75,7 @@
                                 <select class="form-control" name="to_unit" id="to_unit">
                                     <?php foreach ($measure_type_units[$measure_type] as $unit => $label): ?>
                                         <option value="<?= $unit ?>"
-                                            <?= isset($_POST['to_unit']) && $_POST['to_unit'] === $unit  ? 'selected' : '' ?>
+                                            <?= isset($_POST['to_unit']) && $_POST['to_unit'] === $unit ? 'selected' : '' ?>
                                         ><?= $label ?></option>
                                     <?php endforeach ?>
                                 </select>

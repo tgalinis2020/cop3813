@@ -20,7 +20,7 @@ $measure_types = [
     'Mass &amp; Weight' => 'mass',
     'Volume' => 'volume',
     'Distance' => 'distance',
-    'Temperature' => 'temperature'
+    'Temperature' => 'temperature',
 ];
 
 // The selected measure type, default is mass

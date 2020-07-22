@@ -6,7 +6,9 @@
 $(function() {
     'use strict'
 
-    // these conveniently log messages and disable functionality during testing
+    // These conveniently log messages and disable functionality during testing.
+    // Setting the debug key to true will show messages in the browser's console.
+    // Setting dry run to true will prevent the app from communicating with the API.
     const settings = { debug: true, dryRun: true }
 
     const API_ROOT = '/~tgalinis2020/p7/api/resources'
@@ -50,6 +52,8 @@ $(function() {
         }
     }
 
+    // Look up the baby names database and retrieve names that are similar to
+    // the user's input.
     const searchName = (name, gender) => ajax({
         method: 'GET',
         url: API_NAMES_ENDPOINT,
@@ -146,9 +150,9 @@ $(function() {
         ({ key }) => key === 'Enter'
     ))
 
-    // Place a vote (or display an error if name was not found).
+    // Place a vote.
     vote.click(function () {
-        // Don't do anything if there is no baby name to vote for.
+        // Don't do anything if value is empty.
         if (name.val() === '') return
 
         !settings.dryRun && placeVote(name.val())

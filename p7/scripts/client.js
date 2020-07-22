@@ -66,8 +66,6 @@ $(function() {
         url: API_NAMES_ENDPOINT,
         data: { name, gender, limit: 50 },
         success: function (res) {
-            const results = []
-
             suggestions.empty() // clear previous suggestions
 
             // append new suggestions
@@ -81,7 +79,7 @@ $(function() {
                     suggestions.empty()
                 })
 
-                suggestions.append(result)
+                suggestions.append(option)
             }
         }
     })

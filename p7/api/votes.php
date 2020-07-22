@@ -9,7 +9,7 @@ require __DIR__ . '/../../common/sanitize.php';
 $dbh = require __DIR__ . '/dependencies/pdo_mysql.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sth = $dbh->prepare('UPDATE BABYNAME_VOTES SET VOTES = VOTES+1 WHERE BABY_ID = (
+    $sth = $dbh->prepare('UPDATE BABYNAME_VOTES SET VOTES = VOTES+1 WHERE NAME_ID = (
         SELECT ID FROM BABYNAMES WHERE NAME = :baby_name
     ) AND GENDER = :baby_gender');
     $sth->bindValue(':baby_name', sanitize(ucfirst($_POST['name'])));

@@ -52,7 +52,7 @@ QUERY;
         }, ['M', 'F'])))
 
         // If no union is required, the query is much simpler.
-        : $base . $constraints . ' ' . $sort
+        : $query . $constraints . ' ' . $sort
     );
 
     // Binding values to prepared statements mitigates SQL injection.

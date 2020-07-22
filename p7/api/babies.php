@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $query = <<<QUERY
 SELECT a.ID as id, a.NAME as name, b.GENDER as gender, b.VOTES AS votes
 FROM BABYNAMES AS a
-JOIN BABYNAME_GENDERS AS b
+JOIN BABYNAME_VOTES AS b
 ON a.ID = b.BABY_ID
 WHERE 1
 QUERY;
@@ -41,7 +41,7 @@ QUERY;
     $sth = $dbh->prepare($union
         // This lovely mess generates a union of the top $limit boy names
         // and top $limit girl names.
-        ? implode(' UNION ALL ', array_map(function ($gender) use ($query, $constraints, $sort) {
+        ? sprintf('(%s)', implode(') UNION ALL (', array_map(function ($gender) use ($query, $constraints, $sort) {
             return sprintf(
                 '%s%s AND b.GENDER = "%s" %s',
                 $query,
@@ -49,7 +49,9 @@ QUERY;
                 $gender,
                 $sort
             );
-        }, ['M', 'F']))
+        }, ['M', 'F'])))
+
+        // If no union is required, the query is much simpler.
         : $base . $constraints . ' ' . $sort
     );
 

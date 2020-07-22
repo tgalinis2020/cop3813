@@ -20,7 +20,7 @@ $(function() {
     const { ajax } = window.jQuery
     const suggestions = $('#suggestions')
     const isMale = $('#baby_is-male')
-    const name = $('#baby_name')
+    const nameInput = $('#baby_name')
     const vote = $('#vote')
     const boyNames = $('#top-10-boy-names')
     const girlNames = $('#top-10-girl-names')
@@ -75,7 +75,7 @@ $(function() {
                 option.addClass('badge badge-secondary')
                 option.html(baby.name)
                 option.click(() => {
-                    name.val(baby.name)
+                    nameInput.val(baby.name)
                     suggestions.empty()
                     settings.debug && console.log(`Selecting ${baby.name}`)
                 })
@@ -153,7 +153,7 @@ $(function() {
     // Populate suggestions list with applicable baby names.
     // Debounce the input stream every three-quarters of a second to prevent
     // unecessary use of bandwidth.
-    name.keyup(debounced(
+    nameInput.keyup(debounced(
         750, // Debounce time (in milliseconds)
 
         // Run the following after the timeout.
@@ -186,9 +186,9 @@ $(function() {
     // Place a vote.
     vote.click(function () {
         // Don't do anything if value is empty.
-        if (name.val() === '') return
+        if (nameInput.val() === '') return
 
-        !settings.dryRun && placeVote(name.val())
+        !settings.dryRun && placeVote(nameInput.val())
         settings.debug && console.log(`Voting for ${name.val()}`)
     })
 

@@ -45,7 +45,7 @@
         {
             "id": 7,
             "title": "Popular Baby Names",
-            "description": "Vote on your favorite baby name using this single page web application! Features a RESTful backend.",
+            "description": "Vote on your favorite baby name using this single page web application! Features a semi-RESTful backend.",
             "url": "/p7/index.html"
         },
 

@@ -11,7 +11,7 @@ $(function() {
     // Setting dry run to true will prevent the app from communicating with the API.
     const settings = { debug: true, dryRun: true }
 
-    const API_ROOT = '/~tgalinis2020/p7/api/resources'
+    const API_ROOT = '/~tgalinis2020/p7/api'
     const API_NAMES_ENDPOINT = `${API_ROOT}/names.php`
     const API_VOTES_ENDPOINT = `${API_ROOT}/votes.php`
 
@@ -26,27 +26,32 @@ $(function() {
     // A decorator function that runs the callback only when a certain
     // amount of time has passed since the last time the function was invoked.
     //
-    // Inspired by an implementation by David Walsh:
+    // Inspired by the following implementation by David Walsh:
     // https://davidwalsh.name/javascript-debounce-function
     function debounced(time, callback, override) {
         let active = false
         let timeout = null
 
         return function (...args) {
-            const self = this
-
-            // run the following after timeout is complete
-            function timeoutHandler() {
-                callback.apply(self, args)
+            // Run the following after the timeout is complete.
+            //
+            // A nice quirk of arrow functions is that they have no "this",
+            // so one can reference the parent context without setting it to
+            // another variable. Before arrow functions were introduced,
+            // it was common to do "var self = this" to reference the parent
+            // function's context.
+            const handler = () => {
+                callback.apply(this, args)
                 active = false
             }
 
             active && window.clearTimeout(timeout)
 
-            if (override.apply(self, args)) {
-                timeoutHandler()
+            // If override condition is set, ignore debouncing behavior.
+            if (typeof override === 'function' && override.apply(this, args)) {
+                handler()
             } else {
-                timeout = window.setTimeout(timeoutHandler, time)
+                timeout = window.setTimeout(handler, time)
                 active = true
             }
         }
@@ -57,7 +62,7 @@ $(function() {
     const searchName = (name, gender) => ajax({
         method: 'GET',
         url: API_NAMES_ENDPOINT,
-        data: { search: name, gender },
+        data: { name, gender },
         success: function (res) {
             suggestions.empty() // clear previous suggestions
 
@@ -80,7 +85,7 @@ $(function() {
             let girlsCounter = 0
 
             // data should contain the names sorted by popularity
-            for (const { id, name, gender } of res.data) {
+            for (const { name, gender } of res.data) {
                 const tr = $('<tr></tr>')
                 const rank_td = $('<td></td>')
                 const name_td = $('<td></td>')
@@ -125,6 +130,7 @@ $(function() {
         750, // Debounce time (in milliseconds)
 
         // Run the following after the timeout.
+        // Use object destructuring to get the key and target of the event.
         function ({ key, target }) {
             const { value } = target
 
@@ -146,7 +152,7 @@ $(function() {
             }
         },
 
-        // Ignore debouncing when enter key is pressed
+        // Ignore debouncing when enter key is pressed.
         ({ key }) => key === 'Enter'
     ))
 

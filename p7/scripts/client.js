@@ -147,7 +147,7 @@ $(function() {
         method: 'POST',
         url: API_VOTES_ENDPOINT,
         data: { name, gender },
-        success: () => updateLeaderboards()
+        complete: () => updateLeaderboards()
     })
 
     // Populate suggestions list with applicable baby names.

@@ -72,7 +72,7 @@ $(function() {
             for (const baby of res.data) {
                 const option = $('<span></span>')
 
-                option.addClass('suggestion')
+                option.addClass('badge badge-secondary')
                 option.html(baby.name)
                 option.click(() => {
                     name.val(baby.name)

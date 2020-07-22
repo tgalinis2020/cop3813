@@ -143,10 +143,10 @@ $(function() {
         }
     })
 
-    const placeVote = name => ajax({
+    const placeVote = (name, gender) => ajax({
         method: 'POST',
         url: API_VOTES_ENDPOINT,
-        data: { name },
+        data: { name, gender },
         success: () => updateLeaderboards()
     })
 
@@ -188,7 +188,7 @@ $(function() {
         // Don't do anything if value is empty.
         if (nameInput.val() === '') return
         suggestions.empty()
-        !settings.dryRun && placeVote(nameInput.val())
+        !settings.dryRun && placeVote(nameInput.val(), isMale.is(':checked') ? 'M' : 'F')
         settings.debug && console.log(`Voting for ${name.val()}`)
     })
 

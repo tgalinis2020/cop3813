@@ -6,6 +6,9 @@
 $(function() {
     'use strict'
 
+    // these conveniently log messages and disable functionality during testing
+    const settings = { debug: true, dryRun: true }
+
     const API_ROOT = '/~tgalinis2020/p7/api/resources'
     const API_NAMES_ENDPOINT = `${API_ROOT}/names.php`
     const API_VOTES_ENDPOINT = `${API_ROOT}/votes.php`
@@ -50,7 +53,7 @@ $(function() {
     const searchName = (name, gender) => ajax({
         method: 'GET',
         url: API_NAMES_ENDPOINT,
-        data: { name, gender },
+        data: { search: name, gender },
         success: function (res) {
             suggestions.empty() // clear previous suggestions
 
@@ -87,12 +90,12 @@ $(function() {
                     case 'M':
                         rank_td.html(++boysCounter)
                         boysTbl.append(tr)
-                    break;
+                        break;
 
                     case 'F':
                         rank_td.html(++girlsCounter)
                         girlsTbl.append(tr)
-                    break;
+                        break;
                 }  
             }
 
@@ -104,9 +107,10 @@ $(function() {
         }
     })
 
-    const placeVote = () => ajax({
+    const placeVote = name => ajax({
         method: 'POST',
         url: API_VOTES_ENDPOINT,
+        data: { name },
         success: () => updateLeaderboards()
     })
 
@@ -116,19 +120,25 @@ $(function() {
     name.keyup(debounced(
         750, // Debounce time (in milliseconds)
 
-        // Run the following after the timeout
+        // Run the following after the timeout.
         function ({ key, target }) {
             const { value } = target
 
+            // Don't do anything if value is empty.
+            if (value === '') return
+
             switch (key) {
                 case 'Enter':
-                    //placeVote()
-                    console.log(`Voting for ${value}`)
-                break;
+                    !settings.dryRun && placeVote()
+
+                    settings.debug && console.log(`Voting for ${value}`)
+                    break;
 
                 default:
-                    //searchName(value, isMale.checked ? 'M' : 'F')
-                    console.log(value)
+                    !settings.dryRun
+                        && searchName(value, isMale.checked ? 'M' : 'F')
+                    
+                    settings.debug && value !== '' && console.log(value)
             }
         },
 
@@ -137,7 +147,14 @@ $(function() {
     ))
 
     // Place a vote (or display an error if name was not found).
-    vote.click(_ => console.log(`Voting for ${name.val()}`))
+    vote.click(function () {
+        // Don't do anything if there is no baby name to vote for.
+        if (name.val() === '') return
 
-    //updateLeaderboards() // show popular baby names when page loads
+        !settings.dryRun && placeVote(name.val())
+        settings.debug && console.log(`Voting for ${name.val()}`)
+    })
+
+    // show popular baby names when page loads
+    !settings.dryRun && updateLeaderboards()
 })

@@ -10,7 +10,7 @@
 return (function () {
     list($username, $password) = explode(
         '\n',
-        file_get_contents('/home/tgalinis2020/.useless-file-ignore-me-thanks')
+        file_get_contents('/home/tgalinis2020/.mysql_login')
     );
 
     $dbh = new PDO(

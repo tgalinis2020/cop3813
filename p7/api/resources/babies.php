@@ -11,12 +11,12 @@ $dbh = require __DIR__ . '/../dependencies/pdo_mysql.php';
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         $limit = sanitize($_GET['limit']) ?? 5;
-        $query = 'SELECT "ID", "NAME", "GENDER" FROM "BABYNAMES"';
+        $query = 'SELECT "ID" as "id", "NAME" as "name", "GENDER" as "gender" FROM "BABYNAMES" WHERE 1';
         $params = [];
 
         if (isset($_GET['name'])) {
-            $name = sanitize($_GET['name']);
-            $query .= ' WHERE "NAME" LIKE ?';
+            $name = sanitize($_GET['search']);
+            $query .= ' AND "NAME" LIKE ?';
             $params[] = $name . '%';
         }
 
@@ -25,7 +25,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $sth = $dbh->prepare($query);
 
         foreach ($params as $i => $param) {
-            $sth->bindParam($i+1, $param);
+            $sth->bindValue($i+1, $param);
         }
 
         $sth->execute();
@@ -36,9 +36,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         header('Content-type: application/vnd.api+json');
 
         echo json_encode(['data' => $data]);
-    break;
+        break;
 
     case 'POST':
 
-    break;
+        break;
 }

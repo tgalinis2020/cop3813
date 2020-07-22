@@ -36,9 +36,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         header('Content-type: application/vnd.api+json');
 
         echo json_encode(['data' => $data]);
-    break;
+        break;
 
     case 'POST':
 
-    break;
+        break;
 }

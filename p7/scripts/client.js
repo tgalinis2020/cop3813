@@ -86,17 +86,19 @@ $(function() {
             let boysCounter = 0
             let girlsCounter = 0
 
-            const head_tr = $('<tr></tr>')
-            const rank_th = $('<th>Rank</th>')
-            const name_th = $('<th>Name</td>')
-            const votes_th = $('<th>Votes</th>')
+            // Add table headers
+            for (const tbl of [boysTbl, girlsTbl]) {
+                const head_tr = $('<tr></tr>')
+                const rank_th = $('<th>Rank</th>')
+                const name_th = $('<th>Name</td>')
+                const votes_th = $('<th>Votes</th>')
 
-            head_tr.append(rank_th);
-            head_tr.append(name_th);
-            head_tr.append(votes_th);
+                head_tr.append(rank_th);
+                head_tr.append(name_th);
+                head_tr.append(votes_th);
 
-            boysTbl.append(head_tr);
-            girlsTbl.append(head_tr);
+                tbl.append(head_tr);
+            }
 
             // data should contain the names sorted by popularity
             for (const { name, gender, votes } of res.data) {

@@ -66,13 +66,23 @@ $(function() {
         url: API_NAMES_ENDPOINT,
         data: { name, gender, limit: 50 },
         success: function (res) {
+            const results = []
+
             suggestions.empty() // clear previous suggestions
 
             // append new suggestions
             for (const baby of res.data) {
-                const option = $('<option>')
-                option.attr('value', baby.name)
-                suggestions.append(option)
+                const option = $('<span class="suggestion"></span>')
+                option.html(baby)
+                option.click(() => {
+                    name.val(baby)
+                    suggestions.empty()
+                })
+                results.push(option)
+            }
+
+            for (const result of results) {
+                suggestions.append(result)
             }
         }
     })

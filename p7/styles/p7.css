@@ -1,0 +1,20 @@
+/* Make suggestions look like links. */
+.suggestion {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.suggestion:hover {
+    text-decoration: underline;
+}
+
+/* Add commas after every suggestion... */
+.suggestion::after {
+    content: ", ";
+}
+
+/* ...but not after the last one. */
+.suggestion:last-child::after {
+    content: "";
+}
+

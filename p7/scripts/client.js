@@ -3,13 +3,15 @@
  * 
  * @author Thomas Galinis <tgalinis2020@fau.edu>
  */
+
+// These conveniently log messages and disable functionality during testing.
+// Setting the debug key to true will show messages in the browser's console.
+// Setting dry run to true will prevent the app from communicating with the API.
+const settings = { debug: false, dryRun: false }
+
 $(function() {
     'use strict'
 
-    // These conveniently log messages and disable functionality during testing.
-    // Setting the debug key to true will show messages in the browser's console.
-    // Setting dry run to true will prevent the app from communicating with the API.
-    const settings = { debug: true, dryRun: false }
 
     const API_ROOT = '/~tgalinis2020/p7/api'
     const API_NAMES_ENDPOINT = `${API_ROOT}/names.php`

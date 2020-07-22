@@ -43,6 +43,13 @@
         },
 
         {
+            "id": 7,
+            "title": "Popular Baby Names",
+            "description": "Vote on your favorite baby name using this single page web application! Features a RESTful backend.",
+            "url": "/p7/index.html"
+        },
+
+        {
             "id": 8,
             "title": "Portal",
             "description": "You are here! This page hosts all my projects. It uses PHP to read projects.json in the p8 directory and displays its contents using Bootstrap cards.",

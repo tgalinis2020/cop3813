@@ -18,3 +18,11 @@
     content: "";
 }
 
+#suggestions {
+    margin: 0 -2em;
+}
+
+#suggestions > span {
+    cursor: pointer;
+    margin: 0 2em;
+}

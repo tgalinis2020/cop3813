@@ -77,6 +77,7 @@ $(function() {
                 option.click(() => {
                     name.val(baby.name)
                     suggestions.empty()
+                    settings.debug && console.log(`Selecting ${baby.name}`)
                 })
 
                 suggestions.append(option)

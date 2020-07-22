@@ -62,7 +62,7 @@ $(function() {
     const searchName = (name, gender) => ajax({
         method: 'GET',
         url: API_NAMES_ENDPOINT,
-        data: { name, gender },
+        data: { name, gender, limit: 50 },
         success: function (res) {
             suggestions.empty() // clear previous suggestions
 

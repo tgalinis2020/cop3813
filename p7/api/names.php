@@ -30,12 +30,12 @@ QUERY;
     // If gender is provided, no need to make a union
     if (!$union) {
         $constraints .= ' AND b.GENDER = :baby_gender';
-        $params[':baby_gender'] = sanitize($_GET['gender']);
+        $params['baby_gender'] = sanitize($_GET['gender']);
     }
 
     if (isset($_GET['name'])) {
         $constraints .= ' AND a.NAME LIKE :baby_name';
-        $params[':baby_name'] = sanitize($_GET['name']) . '%';
+        $params['baby_name'] = sanitize($_GET['name']) . '%';
     }
     
     $sth = $dbh->prepare($union
@@ -56,8 +56,8 @@ QUERY;
     );
 
     // Binding values to prepared statements mitigates SQL injection.
-    foreach ($params as $i => $param) {
-        $sth->bindValue($i+1, $param);
+    foreach ($params as $param => $value) {
+        $sth->bindValue(':' . $param, $value);
     }
 
     $sth->execute();

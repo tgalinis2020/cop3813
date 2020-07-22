@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Instead of determining when to use the where clause, use "WHERE 1"
     // and use "AND" to add additional conditions when needed.
     $query = <<<QUERY
-SELECT a.ID as id, a.NAME as name, b.GENDER as gender, b.VOTES AS votes
+SELECT a.ID, a.NAME, b.GENDER, b.VOTES
 FROM BABYNAMES AS a
 JOIN BABYNAME_VOTES AS b
-ON a.ID = b.BABY_ID
+ON a.ID = b.NAME_ID
 WHERE 1
 QUERY;
     $constraints = '';
@@ -62,7 +62,14 @@ QUERY;
 
     $sth->execute();
 
-    $data = $sth->fetchAll();
+    $data = array_map(function ($rec) {
+        return [
+            'id' => $rec['ID'],
+            'name' => $rec['NAME'],
+            'gender' => $rec['GENDER'],
+            'votes' => (int) $rec['VOTES'],
+        ];
+    } , $sth->fetchAll());
 
     header('HTTP/1.1 200 OK', true, 200);
     header('Content-type: application/vnd.api+json');

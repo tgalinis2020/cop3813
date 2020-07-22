@@ -165,7 +165,7 @@ $(function() {
 
                 default:
                     !settings.dryRun
-                        && searchName(value, isMale.checked ? 'M' : 'F')
+                        && searchName(value, isMale.is(':checked') ? 'M' : 'F')
                     
                     settings.debug && value !== '' && console.log(value)
             }

@@ -187,7 +187,7 @@ $(function() {
     vote.click(function () {
         // Don't do anything if value is empty.
         if (nameInput.val() === '') return
-
+        suggestions.empty()
         !settings.dryRun && placeVote(nameInput.val())
         settings.debug && console.log(`Voting for ${name.val()}`)
     })

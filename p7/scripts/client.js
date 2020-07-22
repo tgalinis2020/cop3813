@@ -87,15 +87,18 @@ $(function() {
             let girlsCounter = 0
 
             // data should contain the names sorted by popularity
-            for (const { name, gender } of res.data) {
+            for (const { name, gender, votes } of res.data) {
                 const tr = $('<tr></tr>')
                 const rank_td = $('<td></td>')
                 const name_td = $('<td></td>')
+                const votes_td = $('<td></td>')
                 
                 tr.append(rank_td)
                 tr.append(name_td)
+                tr.append(votes_td)
 
                 name_td.html(name)
+                votes_td.html(votes)
 
                 switch (gender) {
                     case 'M':

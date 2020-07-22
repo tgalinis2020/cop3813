@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // If both genders are required, use a union to fetch the top $limit
     // baby names for both boys and girls.
     $union = !isset($_GET['gender']);
-    $limit = sanitize($_GET['limit']) ?? 10;
+    $limit = sanitize($_GET['limit'] ?? 10);
     
     // Instead of determining when to use the where clause, use "WHERE 1"
     // and use "AND" to add additional conditions when needed.

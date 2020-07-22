@@ -72,16 +72,15 @@ $(function() {
 
             // append new suggestions
             for (const baby of res.data) {
-                const option = $('<span class="suggestion"></span>')
-                option.html(baby)
+                const option = $('<span></span>')
+
+                option.addClass('suggestion')
+                option.html(baby.name)
                 option.click(() => {
-                    name.val(baby)
+                    name.val(baby.name)
                     suggestions.empty()
                 })
-                results.push(option)
-            }
 
-            for (const result of results) {
                 suggestions.append(result)
             }
         }

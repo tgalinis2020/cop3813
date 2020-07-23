@@ -12,7 +12,6 @@ const settings = { debug: false, dryRun: false }
 $(function() {
     'use strict'
 
-
     const API_ROOT = '/~tgalinis2020/p7/api'
     const API_NAMES_ENDPOINT = `${API_ROOT}/names.php`
     const API_VOTES_ENDPOINT = `${API_ROOT}/votes.php`
@@ -20,6 +19,7 @@ $(function() {
     const { ajax } = window.jQuery
     const suggestions = $('#suggestions')
     const isMale = $('#baby_is-male')
+    const isFemale = $('#baby_is-female')
     const nameInput = $('#baby_name')
     const vote = $('#vote')
     const boyNames = $('#top-10-boy-names')
@@ -182,6 +182,14 @@ $(function() {
         // Ignore debouncing when enter key is pressed.
         ({ key }) => key === 'Enter'
     ))
+
+    // Update suggestions if radio buttons have been selected.
+    [[isMale, 'M'], [isFemale, 'F']].forEach(([el, gender]) => el.change(function () {
+        if (nameInput.val() === '' || !this.is(':checked')) return
+
+        !settings.dryRun && searchName(nameInput.val(), gender)
+        settings.debug && value !== '' && console.log(value)
+    }))
 
     // Place a vote.
     vote.click(function () {

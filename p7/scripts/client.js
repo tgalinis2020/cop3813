@@ -192,10 +192,12 @@ $(function() {
                     }
 
                 default:
-                    !settings.dryRun && value !== ''
-                        && searchName(value, isMale.is(':checked') ? 'M' : 'F')
-                    
-                    settings.debug && value !== '' && console.log(value)
+                    if (value !== '') {
+                        !settings.dryRun
+                            && searchName(value, isMale.is(':checked') ? 'M' : 'F')
+                        
+                        settings.debug && console.log(value)
+                    }
             }
         },
 

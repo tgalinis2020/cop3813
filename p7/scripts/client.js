@@ -177,6 +177,8 @@ $(function() {
             // Don't do anything if value is empty.
             if (value === '') return
 
+            settings.debug && console.log(`[nameInput] Key pressed: ${key}`)
+
             switch (key) {
                 case 'Enter':
                     !settings.dryRun && placeVote()

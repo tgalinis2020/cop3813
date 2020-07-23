@@ -148,7 +148,7 @@ $(function() {
         url: API_VOTES_ENDPOINT,
         data: { name, gender },
         statusCode: {
-            200: () => {
+            201: () => {
                 nameInput.removeClass('is-invalid')
                 updateLeaderboards()
             },

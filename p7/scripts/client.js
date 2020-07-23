@@ -147,7 +147,15 @@ $(function() {
         method: 'POST',
         url: API_VOTES_ENDPOINT,
         data: { name, gender },
-        complete: () => updateLeaderboards()
+        statusCode: {
+            200: () => {
+                nameInput.removeClass('is-invalid')
+                updateLeaderboards()
+            },
+            406: () => {
+                nameInput.addClass('is-invalid')
+            }
+        }
     })
 
     // Populate suggestions list with applicable baby names.

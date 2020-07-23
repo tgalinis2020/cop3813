@@ -198,7 +198,7 @@ $(function() {
         },
 
         // Ignore debouncing when enter or backspace keys are pressed.
-        ({ key }) => key in ['Enter', 'Backspace']
+        ({ key }) => ['Enter', 'Backspace'].contains(key)
     ))
 
     // Update suggestions if radio buttons have been selected.

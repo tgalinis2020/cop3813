@@ -131,12 +131,12 @@ $(function() {
                     case 'M':
                         rank_td.html(++boysCounter)
                         boysTbl.append(tr)
-                        break;
+                        break
 
                     case 'F':
                         rank_td.html(++girlsCounter)
                         girlsTbl.append(tr)
-                        break;
+                        break
                 }  
             }
 

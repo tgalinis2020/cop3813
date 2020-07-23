@@ -187,7 +187,6 @@ $(function() {
                     // If the form had invalid input but was erased,
                     // reset the form's validity state.
                     value === '' && $(this).removeClass('is-invalid')
-                    break
 
                 default:
                     !settings.dryRun && value !== ''
@@ -198,7 +197,7 @@ $(function() {
         },
 
         // Ignore debouncing when enter or backspace keys are pressed.
-        ({ key }) => ['Enter', 'Backspace'].includes(key)
+        ({ key, target }) => key === 'Enter' || (key === 'Backspace' && target.value === '') 
     ))
 
     // Update suggestions if radio buttons have been selected.

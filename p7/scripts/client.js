@@ -174,14 +174,11 @@ $(function() {
         function ({ key, target }) {
             const { value } = target
 
-            // Don't do anything if value is empty.
-            if (value === '') return
-
             settings.debug && console.log(`[nameInput] Key pressed: ${key}`)
 
             switch (key) {
                 case 'Enter':
-                    !settings.dryRun && placeVote()
+                    !settings.dryRun && value !== '' && placeVote()
 
                     settings.debug && console.log(`Voting for ${value}`)
                     break;
@@ -189,20 +186,18 @@ $(function() {
                 case 'Backspace':
                     // If the form had invalid input but was erased,
                     // reset the form's validity state.
-                    if (value === '') {
-                        $(this).removeClass('is-invalid')
-                    }
+                    value === '' && $(this).removeClass('is-invalid')
                     break;
 
                 default:
-                    !settings.dryRun
+                    !settings.dryRun && value !== ''
                         && searchName(value, isMale.is(':checked') ? 'M' : 'F')
                     
                     settings.debug && value !== '' && console.log(value)
             }
         },
 
-        // Ignore debouncing when enter key is pressed.
+        // Ignore debouncing when enter or backspace keys are pressed.
         ({ key }) => key in ['Enter', 'Backspace']
     ))
 

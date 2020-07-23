@@ -184,12 +184,14 @@ $(function() {
     ))
 
     // Update suggestions if radio buttons have been selected.
-    [[isMale, 'M'], [isFemale, 'F']].forEach(([el, gender]) => el.change(function () {
-        if (nameInput.val() === '' || !this.is(':checked')) return
+    for (const [el, gender] of [[isMale, 'M'], [isFemale, 'F']]) {
+        el.change(function () {
+            if (nameInput.val() === '' || !this.is(':checked')) return
 
-        !settings.dryRun && searchName(nameInput.val(), gender)
-        settings.debug && value !== '' && console.log(value)
-    }))
+            !settings.dryRun && searchName(nameInput.val(), gender)
+            settings.debug && value !== '' && console.log(value)
+        })
+    }
 
     // Place a vote.
     vote.click(function () {

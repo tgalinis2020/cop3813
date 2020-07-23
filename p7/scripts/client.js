@@ -186,7 +186,7 @@ $(function() {
     // Update suggestions if radio buttons have been selected.
     for (const [el, gender] of [[isMale, 'M'], [isFemale, 'F']]) {
         el.change(function () {
-            if (nameInput.val() === '' || !this.is(':checked')) return
+            if (nameInput.val() === '' || !el.is(':checked')) return
 
             !settings.dryRun && searchName(nameInput.val(), gender)
             settings.debug && value !== '' && console.log(value)

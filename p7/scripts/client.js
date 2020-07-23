@@ -179,7 +179,7 @@ $(function() {
             switch (key) {
                 case 'Enter':
                     !settings.dryRun && value !== ''
-                        && placeVote(nameInput.val(), isMale.is(':checked') ? 'M' : 'F')
+                        && placeVote(value, isMale.is(':checked') ? 'M' : 'F')
 
                     settings.debug && console.log(`Voting for ${value}`)
                     break
@@ -209,10 +209,12 @@ $(function() {
     // Update suggestions if radio buttons have been selected.
     for (const [el, gender] of [[isMale, 'M'], [isFemale, 'F']]) {
         el.change(function () {
-            if (nameInput.val() === '' || !el.is(':checked')) return
+            const name = nameInput.val()
 
-            !settings.dryRun && searchName(nameInput.val(), gender)
-            settings.debug && value !== '' && console.log(value)
+            if (name === '' || !el.is(':checked')) return
+
+            !settings.dryRun && searchName(name, gender)
+            settings.debug && name !== '' && console.log(name)
         })
     }
 
@@ -222,7 +224,7 @@ $(function() {
         if (nameInput.val() === '') return
         suggestions.empty()
         !settings.dryRun && placeVote(nameInput.val(), isMale.is(':checked') ? 'M' : 'F')
-        settings.debug && console.log(`Voting for ${name.val()}`)
+        settings.debug && console.log(`Voting for ${nameInput.val()}`)
     })
 
     // show popular baby names when page loads

@@ -179,6 +179,10 @@ $(function() {
                     settings.debug && console.log(`Voting for ${value}`)
                     break;
 
+                case 'Space':
+
+                    break;
+
                 default:
                     !settings.dryRun
                         && searchName(value, isMale.is(':checked') ? 'M' : 'F')
@@ -198,6 +202,11 @@ $(function() {
 
             !settings.dryRun && searchName(nameInput.val(), gender)
             settings.debug && value !== '' && console.log(value)
+
+            // If the user had invalid input but then picked a name from
+            // the suggestions, it would make sense to remove the error
+            // at that point.
+            nameInput.removeClass('is-invalid')
         })
     }
 

@@ -181,13 +181,13 @@ $(function() {
                     !settings.dryRun && value !== '' && placeVote()
 
                     settings.debug && console.log(`Voting for ${value}`)
-                    break;
+                    break
 
                 case 'Backspace':
                     // If the form had invalid input but was erased,
                     // reset the form's validity state.
                     value === '' && $(this).removeClass('is-invalid')
-                    break;
+                    break
 
                 default:
                     !settings.dryRun && value !== ''

@@ -178,7 +178,8 @@ $(function() {
 
             switch (key) {
                 case 'Enter':
-                    !settings.dryRun && value !== '' && placeVote()
+                    !settings.dryRun && value !== ''
+                        && placeVote(nameInput.val(), isMale.is(':checked') ? 'M' : 'F')
 
                     settings.debug && console.log(`Voting for ${value}`)
                     break

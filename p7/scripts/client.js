@@ -78,6 +78,11 @@ $(function() {
                     nameInput.val(baby.name)
                     suggestions.empty()
                     settings.debug && console.log(`Selecting ${baby.name}`)
+
+                    // If the user had invalid input but then picked a name from
+                    // the suggestions, it would make sense to remove the error
+                    // at that point.
+                    nameInput.removeClass('is-invalid')
                 })
 
                 suggestions.append(option)
@@ -179,8 +184,12 @@ $(function() {
                     settings.debug && console.log(`Voting for ${value}`)
                     break;
 
-                case 'Space':
-
+                case 'Backspace':
+                    // If the form had invalid input but was erased,
+                    // reset the form's validity state.
+                    if (value === '') {
+                        $(this).removeClass('is-invalid')
+                    }
                     break;
 
                 default:
@@ -192,7 +201,7 @@ $(function() {
         },
 
         // Ignore debouncing when enter key is pressed.
-        ({ key }) => key === 'Enter'
+        ({ key }) => key in ['Enter', 'Backspace']
     ))
 
     // Update suggestions if radio buttons have been selected.
@@ -202,11 +211,6 @@ $(function() {
 
             !settings.dryRun && searchName(nameInput.val(), gender)
             settings.debug && value !== '' && console.log(value)
-
-            // If the user had invalid input but then picked a name from
-            // the suggestions, it would make sense to remove the error
-            // at that point.
-            nameInput.removeClass('is-invalid')
         })
     }
 

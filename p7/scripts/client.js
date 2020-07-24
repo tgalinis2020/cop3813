@@ -164,7 +164,7 @@ $(function() {
                 alert.addClass('alert alert-success alert-dismissable fade show')
 
                 close.attr('type', 'button')
-                close.data('dismiss', 'alert')
+                close.attr('data-dismiss', 'alert')
                 close.attr('aria-label', 'Close')
                 close.addClass('close')
 

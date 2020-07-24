@@ -11,7 +11,7 @@ $dbh = require __DIR__ . '/dependencies/pdo_mysql.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sth = false;
 
-    if (isset($_GET['name'], $_GET['gender'])) {
+    if (isset($_POST['name'], $_POST['gender'])) {
         $query  = 'UPDATE BABYNAME_VOTES SET VOTES = VOTES+1 WHERE NAME_ID = (';
         $query .= 'SELECT ID FROM BABYNAMES WHERE NAME = :baby_name';
         $query .= ') AND GENDER = :baby_gender';

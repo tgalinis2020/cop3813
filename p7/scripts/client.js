@@ -156,10 +156,20 @@ $(function() {
         data: { name, gender },
         statusCode: {
             201: () => {
+                // Display an alert showing the vote was cast successfully
+                const alert = $('<div></div>')
+                const message = $('<span></span>')
+                const close = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>')
+
+                alert.addClass('alert alert-success alert-dismissable fade show')
+                message.html(`Your vote for ${name} has been cast!`)
+                close.html('<span aria-hidden="true">&times;</span>')
+
+                alert.append(message)
+                alert.append(close)
+
                 nameInput.removeClass('is-invalid')
                 nameInput.val('')
-                alert_name.html(name)
-                alert.addClass('show')
                 updateLeaderboards()
             },
             406: () => {

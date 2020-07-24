@@ -177,6 +177,8 @@ $(function() {
 
                 nameInput.removeClass('is-invalid')
                 nameInput.val('')
+
+                suggestions.empty()
                 updateLeaderboards()
             },
             406: () => {
@@ -201,8 +203,10 @@ $(function() {
 
             switch (key) {
                 case 'Enter':
-                    !settings.dryRun && name !== '' && placeVote(name, gender)
-                    settings.debug && console.log(`Voting for ${name}`)
+                    if (name !== '') {
+                        !settings.dryRun && placeVote(name, gender)
+                        settings.debug && console.log(`Voting for ${name}`)
+                    }
                     break
 
                 case 'Backspace':
@@ -243,7 +247,6 @@ $(function() {
 
         // Don't do anything if value is empty.
         if (name === '') return
-        suggestions.empty()
         !settings.dryRun && placeVote(name, isMale.is(':checked') ? 'M' : 'F')
         settings.debug && console.log(`Voting for ${name}`)
     })

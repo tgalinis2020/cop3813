@@ -1,3 +1,3 @@
 *.pdf
 .netrwhist
-
+/p7/api/dependencies/credentials.php

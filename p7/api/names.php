@@ -14,46 +14,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $union = !isset($_GET['gender']);
     $limit = sanitize($_GET['limit'] ?? 10);
     
+    $query  = 'SELECT a.ID, a.NAME, b.GENDER, b.VOTES ';
+    $query .= 'FROM BABYNAMES AS a ';
+    $query .= 'JOIN BABYNAME_VOTES AS b ';
+
     // Instead of determining when to use the where clause, use "WHERE 1"
     // and use "AND" to add additional conditions when needed.
-    $query = <<<QUERY
-SELECT a.ID, a.NAME, b.GENDER, b.VOTES
-FROM BABYNAMES AS a
-JOIN BABYNAME_VOTES AS b
-ON a.ID = b.NAME_ID
-WHERE 1
-QUERY;
+    $query .= 'ON a.ID = b.NAME_ID WHERE 1';
+
     $constraints = '';
     $sort = 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT ' . $limit;
     $params = [];
-
-    // If gender is provided, no need to make a union
-    if (!$union) {
-        $constraints .= ' AND b.GENDER = :baby_gender';
-        $params['baby_gender'] = sanitize($_GET['gender']);
-    }
 
     if (isset($_GET['name'])) {
         $constraints .= ' AND a.NAME LIKE :baby_name';
         $params['baby_name'] = sanitize($_GET['name']) . '%';
     }
-    
-    $sth = $dbh->prepare($union
-        // This lovely mess generates a union of the top $limit boy names
-        // and top $limit girl names.
-        ? sprintf('(%s)', implode(') UNION ALL (', array_map(function ($gender) use ($query, $constraints, $sort) {
-            return sprintf(
-                '%s%s AND b.GENDER = "%s" %s',
-                $query,
-                $constraints,
-                $gender,
-                $sort
-            );
-        }, ['M', 'F'])))
 
-        // If no union is required, the query is much simpler.
-        : $query . $constraints . ' ' . $sort
-    );
+    // Build the final query based on query parameters.
+    if ($union) {
+        $query = sprintf('(%s)', implode(
+            ') UNION ALL (',
+
+            array_map(
+                function ($gender) use ($query, $constraints, $sort) {
+                    return sprintf(
+                        '%s%s AND b.GENDER = "%s" %s',
+                        $query,
+                        $constraints,
+                        $gender,
+                        $sort
+                    );
+                },
+
+                ['M', 'F']
+            )
+        ));
+    } else {
+        $constraints .= ' AND b.GENDER = :baby_gender';
+        $params['baby_gender'] = sanitize($_GET['gender']);
+
+        $query .= $constraints . ' ' . $sort;
+    }
+    
+    $sth = $dbh->prepare($query);
 
     // Binding values to prepared statements mitigates SQL injection.
     foreach ($params as $param => $value) {
@@ -62,17 +66,21 @@ QUERY;
 
     $sth->execute();
 
-    $data = array_map(function ($rec) {
-        return [
-            'id' => $rec['ID'],
-            'name' => $rec['NAME'],
-            'gender' => $rec['GENDER'],
-            'votes' => (int) $rec['VOTES'],
-        ];
-    } , $sth->fetchAll());
-
     header('HTTP/1.1 200 OK', true, 200);
     header('Content-type: application/vnd.api+json');
 
-    echo json_encode(['data' => $data]);
+    echo json_encode([
+        'data' => array_map(
+            function ($rec) {
+                return [
+                    'id' => $rec['ID'],
+                    'name' => $rec['NAME'],
+                    'gender' => $rec['GENDER'],
+                    'votes' => (int) $rec['VOTES'],
+                ];
+            },
+        
+            $sth->fetchAll()
+        )
+    ]);
 }

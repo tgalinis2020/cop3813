@@ -22,8 +22,7 @@ $(function() {
     const isFemale = $('#baby_is-female')
     const nameInput = $('#baby_name')
     const vote = $('#vote')
-    const alert = $('#vote-alert')
-    const alert_name = $('#vote-alert-name')
+    const alert_container = $('#vote-alert')
     const boyNames = $('#top-10-boy-names')
     const girlNames = $('#top-10-girl-names')
 
@@ -165,8 +164,9 @@ $(function() {
                 message.html(`Your vote for ${name} has been cast!`)
                 close.html('<span aria-hidden="true">&times;</span>')
 
-                alert.append(message)
-                alert.append(close)
+                for (const el in [message, close]) alert.append(el)
+
+                alert_container.append(alert)
 
                 nameInput.removeClass('is-invalid')
                 nameInput.val('')

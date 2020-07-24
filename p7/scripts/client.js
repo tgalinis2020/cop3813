@@ -22,6 +22,8 @@ $(function() {
     const isFemale = $('#baby_is-female')
     const nameInput = $('#baby_name')
     const vote = $('#vote')
+    const alert = $('#vote-alert')
+    const alert_name = $('#vote-alert-name')
     const boyNames = $('#top-10-boy-names')
     const girlNames = $('#top-10-girl-names')
 
@@ -155,6 +157,9 @@ $(function() {
         statusCode: {
             201: () => {
                 nameInput.removeClass('is-invalid')
+                nameInput.val('')
+                alert_name.html(name)
+                alert.addClass('show')
                 updateLeaderboards()
             },
             406: () => {

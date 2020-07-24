@@ -171,7 +171,7 @@ $(function() {
                 message.html(`Your vote for ${name} has been cast!`)
                 close.html('<span aria-hidden="true">&times;</span>')
 
-                for (const el in [message, close]) alert.append(el)
+                for (const el of [message, close]) alert.append(el)
 
                 alert_container.append(alert)
 

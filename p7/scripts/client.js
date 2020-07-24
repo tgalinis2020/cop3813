@@ -158,9 +158,16 @@ $(function() {
                 // Display an alert showing the vote was cast successfully
                 const alert = $('<div></div>')
                 const message = $('<span></span>')
-                const close = $('<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>')
+                const close = $('<button></button>')
 
+                alert.attr('role', 'alert')
                 alert.addClass('alert alert-success alert-dismissable fade show')
+
+                close.attr('type', 'button')
+                close.data('dismiss', 'alert')
+                close.attr('aria-label', 'Close')
+                close.addClass('close')
+
                 message.html(`Your vote for ${name} has been cast!`)
                 close.html('<span aria-hidden="true">&times;</span>')
 

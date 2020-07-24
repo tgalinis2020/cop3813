@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     if (isset($_GET['name'])) {
         $constraints .= ' AND a.NAME LIKE :baby_name';
-        $params['baby_name'] = sanitize($_GET['name']) . '%';
+        $params['baby_name'] = trim(sanitize($_GET['name'])) . '%';
     }
 
     // Build the final query based on query parameters.
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ));
     } else {
         $constraints .= ' AND b.GENDER = :baby_gender';
-        $params['baby_gender'] = sanitize($_GET['gender']);
+        $params['baby_gender'] = trim(sanitize($_GET['gender']));
 
         $query .= $constraints . ' ' . $sort;
     }

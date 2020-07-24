@@ -194,32 +194,29 @@ $(function() {
         // Run the following after the timeout.
         // Use object destructuring to get the key and target of the event.
         function ({ key, target }) {
-            const { value } = target
+            const name = target.value.trim()
+            const gender = isMale.is(':checked') ? 'M' : 'F'
 
             settings.debug && console.log(`[nameInput] Key pressed: ${key}`)
 
             switch (key) {
                 case 'Enter':
-                    !settings.dryRun && value !== ''
-                        && placeVote(value, isMale.is(':checked') ? 'M' : 'F')
-
-                    settings.debug && console.log(`Voting for ${value}`)
+                    !settings.dryRun && name !== '' && placeVote(name, gender)
+                    settings.debug && console.log(`Voting for ${name}`)
                     break
 
                 case 'Backspace':
                     // If the form had invalid input but was erased,
                     // reset the form's validity state.
-                    if (value === '') {
+                    if (name === '') {
                         $(this).removeClass('is-invalid')
                         suggestions.empty()
                     }
 
                 default:
-                    if (value !== '') {
-                        !settings.dryRun
-                            && searchName(value, isMale.is(':checked') ? 'M' : 'F')
-                        
-                        settings.debug && console.log(value)
+                    if (name !== '') {
+                        !settings.dryRun && searchName(name, gender)
+                        settings.debug && console.log(name)
                     }
             }
         },
@@ -231,7 +228,7 @@ $(function() {
     // Update suggestions if radio buttons have been selected.
     for (const [el, gender] of [[isMale, 'M'], [isFemale, 'F']]) {
         el.change(function () {
-            const name = nameInput.val()
+            const name = nameInput.val().trim()
 
             if (name === '' || !el.is(':checked')) return
 
@@ -242,11 +239,13 @@ $(function() {
 
     // Place a vote.
     vote.click(function () {
+        const name = nameInput.val().trim()
+
         // Don't do anything if value is empty.
-        if (nameInput.val() === '') return
+        if (name === '') return
         suggestions.empty()
-        !settings.dryRun && placeVote(nameInput.val(), isMale.is(':checked') ? 'M' : 'F')
-        settings.debug && console.log(`Voting for ${nameInput.val()}`)
+        !settings.dryRun && placeVote(name, isMale.is(':checked') ? 'M' : 'F')
+        settings.debug && console.log(`Voting for ${name}`)
     })
 
     // show popular baby names when page loads

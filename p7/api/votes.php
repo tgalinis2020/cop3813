@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query .= ') AND GENDER = :baby_gender';
 
         $sth = $dbh->prepare($query);
-        $sth->bindValue(':baby_name', sanitize(ucfirst($_POST['name'])));
-        $sth->bindValue(':baby_gender', sanitize(strtoupper($_POST['gender'])));
+        $sth->bindValue(':baby_name', trim(sanitize(ucfirst($_POST['name']))));
+        $sth->bindValue(':baby_gender', trim(sanitize(strtoupper($_POST['gender']))));
         $sth->execute();
     }
 

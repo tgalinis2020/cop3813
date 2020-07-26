@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // If both genders are required, use a union to fetch the top $limit
     // baby names for both boys and girls.
     $union = !isset($_GET['gender']);
-    $limit = sanitize($_GET['limit'] ?? 10);
+    $limit = sanitize((int) $_GET['limit'] ?? 10);
     
     $query  = 'SELECT a.ID, a.NAME, b.GENDER, b.VOTES ';
     $query .= 'FROM BABYNAMES AS a ';
@@ -22,13 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // and use "AND" to add additional conditions when needed.
     $query .= 'ON a.ID = b.NAME_ID WHERE 1';
 
+    $sorting = 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT :limit';
+    $params = ['limit' => [$limit, PDO::PARAM_INT]];
     $constraints = '';
-    $sort = 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT ' . $limit;
-    $params = [];
 
     if (isset($_GET['name'])) {
         $constraints .= ' AND a.NAME LIKE :baby_name';
-        $params['baby_name'] = trim(sanitize($_GET['name'])) . '%';
+
+        // Use a wildcard (%) to select names that are similar to what the
+        // user requested. Useful for autocomplete functionality.
+        $params['baby_name'] = [trim(sanitize($_GET['name'])) . '%', PDO::PARAM_STR];
     }
 
     // Build the final query based on query parameters.
@@ -37,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             ') UNION ALL (',
 
             array_map(
-                function ($gender) use ($query, $constraints, $sort) {
+                function ($gender) use ($query, $constraints, $sorting) {
                     return sprintf(
                         '%s%s AND b.GENDER = "%s" %s',
                         $query,
                         $constraints,
                         $gender,
-                        $sort
+                        $sorting
                     );
                 },
 
@@ -52,16 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ));
     } else {
         $constraints .= ' AND b.GENDER = :baby_gender';
-        $params['baby_gender'] = trim(sanitize($_GET['gender']));
+        $params['baby_gender'] = [trim(sanitize($_GET['gender'])), PDO::PARAM_STR];
 
-        $query .= $constraints . ' ' . $sort;
+        $query .= $constraints . ' ' . $sorting;
     }
     
     $sth = $dbh->prepare($query);
 
     // Binding values to prepared statements mitigates SQL injection.
-    foreach ($params as $param => $value) {
-        $sth->bindValue(':' . $param, $value);
+    foreach ($params as $param => list($value, $type)) {
+        $sth->bindValue(':' . $param, $value, $type);
     }
 
     $sth->execute();

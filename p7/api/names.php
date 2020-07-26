@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $union = !isset($_GET['gender']);
     $limit = sanitize((int) $_GET['limit'] ?? 10);
     
-    $query  = 'SELECT a.ID, a.NAME, b.GENDER, b.VOTES ';
+    $query  = 'SELECT b.ID, a.NAME, b.GENDER, b.VOTES ';
     $query .= 'FROM BABYNAMES AS a ';
     $query .= 'JOIN BABYNAME_VOTES AS b ';
 

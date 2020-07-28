@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // and use "AND" to add additional conditions when needed.
     $query .= 'ON a.ID = b.NAME_ID WHERE 1';
 
-    $sorting = 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT :limit';
-    $params = ['limit' => [$limit, PDO::PARAM_INT]];
+    $sorting = 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT :num_names';
+    $params = ['num_names' => [$limit, PDO::PARAM_INT]];
     $constraints = '';
 
     if (isset($_GET['name'])) {

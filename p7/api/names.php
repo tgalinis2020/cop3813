@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Binding values to prepared statements mitigates SQL injection.
     foreach ($params as $param => list($value, $type)) {
+        echo '<p>[debug] binding param "' . $param . '" of type "' . $type . '" with value "'. $value . '"</p>' . PHP_EOL;
         $sth->bindValue(':' . $param, $value, $type);
     }
 

@@ -35,29 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
     $sth = $dbh->prepare($query);
 
-    // Binding values to prepared statements mitigates SQL injection.
-    if ($union) {
-        foreach (['M', 'F'] as $gender) {
-            $params['baby_gender'] = $gender;
+    $genders = isset($_GET['gender'])
+        ? [strtoupper(trim(sanitize($_GET['gender'])))]
+        : ['M', 'F'];
 
-            foreach ($params as $param => list($value, $type)) {
-                $sth->bindValue(':' . $param, $value, $type);
-            }
-            
-            $sth->execute();
+    foreach ($genders as $gender) {
+        $params['baby_gender'] = $gender;
 
-            $data += $sth->fetchAll();
-        }
-    } else {
-        $params['baby_gender'] = strtoupper(trim(sanitize($_GET['gender'])));
-
+        // Binding values to prepared statements mitigates SQL injection.
         foreach ($params as $param => list($value, $type)) {
             $sth->bindValue(':' . $param, $value, $type);
         }
-
+        
         $sth->execute();
 
-        $data = $sth->fetchAll();
+        $data += $sth->fetchAll();
     }
 
     header('HTTP/1.1 200 OK', true, 200);

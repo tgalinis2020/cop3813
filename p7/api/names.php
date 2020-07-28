@@ -62,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
     $sth = $dbh->prepare($query);
 
+    var_dump($sth);
+
     // Binding values to prepared statements mitigates SQL injection.
     foreach ($params as $param => list($value, $type)) {
         $sth->bindValue(':' . $param, $value, $type);

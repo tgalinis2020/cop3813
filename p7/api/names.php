@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $sth->execute();
 
         $data = array_merge($data, $sth->fetchAll());
+
+        var_dump($data);
     }
 
     header('HTTP/1.1 200 OK', true, 200);

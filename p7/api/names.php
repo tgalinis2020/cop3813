@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // If both genders are required, use a union to fetch the top $limit
     // baby names for both boys and girls.
     $union = !isset($_GET['gender']);
-    $limit = sanitize((int) $_GET['limit'] ?? 10);
+    $limit = sanitize((int) ($_GET['limit'] ?? 10));
     
     $query  = 'SELECT b.ID, a.NAME, b.GENDER, b.VOTES ';
     $query .= 'FROM BABYNAMES AS a ';

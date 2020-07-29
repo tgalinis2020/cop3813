@@ -32,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $query .= 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT :limit';
     $data = [];
+
+    echo $query . PHP_EOL . PHP_EOL;
     
     $sth = $dbh->prepare($query);
 

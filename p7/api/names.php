@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $query .= 'ORDER BY b.VOTES DESC, a.NAME ASC LIMIT :limit';
     $data = [];
 
-    echo $query . PHP_EOL . PHP_EOL;
-    
     $sth = $dbh->prepare($query);
 
     $genders = isset($_GET['gender'])
@@ -51,11 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
         $sth->execute();
 
-        $res = $sth->fetchAll();
-
-        var_dump($res);
-
-        $data = array_merge($data, $res);
+        $data = array_merge($data, $sth->fetchAll());
 
     }
 

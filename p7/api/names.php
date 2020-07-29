@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         : ['M', 'F'];
 
     foreach ($genders as $gender) {
-        $params['baby_gender'] = $gender;
+        $params['baby_gender'] = [$gender, PDO::PARAM_STR];
 
         // Binding values to prepared statements mitigates SQL injection.
         foreach ($params as $param => list($value, $type)) {
